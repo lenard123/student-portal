@@ -7,12 +7,19 @@ function dd($var)
     die();
 }
 
-function abort($status = 500, $message = 'Server Error')
+
+
+function response($status = 200, $data)
 {
-    header($status);
-    header("Content-Type: text/plain");
-    echo $message;
-    die();
+    http_response_code($status);
+    header("Content-Type: application/json");
+    die(json_encode($data));
+}
+
+function abort($status = 500, $message = 'Server Error', $data = null)
+{
+    ob_end_clean();
+    response($status, compact('message', 'data'));
 }
 
 function page_title($title = '')
@@ -29,4 +36,20 @@ function url($path = '')
 function asset($path = '')
 {
     return BASE_URL . 'assets/' . $path;
+}
+
+function sanitize_input($value)
+{
+    return trim($value);
+}
+
+function redirect($location)
+{
+    header('Location: '. url($location));
+    exit();
+}
+
+function middleware($name)
+{
+    require ROOT_PATH . '/middlewares/' . $name . '.php';
 }

@@ -1,27 +1,22 @@
 <?php
 
-class Database
-{
+use Illuminate\Database\Capsule\Manager as Capsule;
 
-    private static $connection = null;
+$capsule = new Capsule;
 
-    public static function getConnection()
-    {
-        try {
-            if (static::$connection == null) {
-                $connection = new PDO("mysql:host=".DB_HOSTNAME.";dbname=".DB_DATABASE, DB_USERNAME, DB_PASSWORD);
-                $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                static::$connection = $connection;
-            }
-            return static::$connection;
-        } catch (PDOException $e) {
-            abort(500, "Database Error: " . $e->getMessage());
-        }
-    }
+$capsule->addConnection([
+    'driver' => 'mysql',
+    'host' => DB_HOSTNAME,
+    'database' => DB_DATABASE,
+    'username' => DB_USERNAME,
+    'password' => DB_PASSWORD,
+    'charset' => 'utf8',
+    'collation' => 'utf8_unicode_ci',
+    'prefix' => '',
+]);
 
-    public static function execute($query)
-    {
-        return static::getConnection()->query($query);
-    }
-}
+// Make this Capsule instance available globally via static methods... (optional)
+$capsule->setAsGlobal();
 
+// Setup the Eloquent ORM... (optional; unless you've used setEventDispatcher())
+$capsule->bootEloquent();

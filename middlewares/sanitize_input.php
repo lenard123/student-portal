@@ -1,10 +1,5 @@
 <?php
 
-function sanitize_input($value)
-{
-    return trim($value);
-}
-
 foreach($_GET as $key => $value) {
     $_GET[$key] = sanitize_input($value);
 }

@@ -2,3 +2,4 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <link rel="stylesheet" type="text/css" href="<?= asset('css/main.css') ?>">
+<link rel="icon" type="img/png" href="<?= asset('img/logo.png') ?>">

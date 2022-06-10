@@ -1,8 +1,11 @@
 <?php
 
+ob_start();
+
 function component($name, $props = [])
 {
-    $file = ROOT_PATH . './templates/'.$name.'.php';
+    global $ROOT_PATH;
+    $file = $ROOT_PATH . './templates/'.$name.'.php';
     if (!file_exists($file)) {
         abort(500, "Invalid component: $name\n File not found");
     }
@@ -14,8 +17,14 @@ function component($name, $props = [])
     foreach($props as $key => $value)
         $$key = $value;
 
-    //Parse Components
-    include $file;
+    try {
+        //Parse Components
+        require $file;
+    } catch (Error $e) {
+        ob_end_clean();
+        ob_end_clean();
+        abort(500, "Error parsing component: $name\n".$e->getMessage());
+    }
 
     //Get Contents
     $content = ob_get_contents();

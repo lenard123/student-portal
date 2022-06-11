@@ -6,7 +6,11 @@ import { getErrorMessage } from './util.js'
 const App = createApp({
     setup() {
 
-        const { isLoading, execute, isError, data, error } = useMutator(adminLoginApi)
+        const onSuccess = () => {
+            window.location.href = BASE_URL + 'admin/index.php';
+        }
+
+        const { isLoading, execute, isError, data, error } = useMutator(adminLoginApi, {onSuccess})
 
         const email = ref('')
         const password = ref('')

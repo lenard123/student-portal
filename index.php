@@ -6,8 +6,7 @@
     <?= component('layouts/headers') ?>
 </head>
 <body>
-    <?= component('layouts/navbar') ?>
-
+  <?= component_start('layouts/main') ?>
     <div class="hero py-16 bg-base-200">
       <div class="hero-content text-center">
         <div class="max-w-md">
@@ -17,8 +16,6 @@
         </div>
       </div>
     </div>
-
-    <?= component('layouts/footer') ?>
-    <?= component('layouts/scripts') ?>
+  <?= component_end() ?>
 </body>
 </html>

@@ -12,7 +12,7 @@
         </a>
 
         <ul class="hidden md:flex menu menu-horizontal p-0">
-            <li><a href="<?= url() ?>">Home</a></li>
+            <li><a href="<?= url('') ?>">Home</a></li>
             <li><a href="<?= url('about.php') ?>">About</a></li>
             <li><a href="<?= url('contact.php') ?>">Contact</a></li>
         </ul>

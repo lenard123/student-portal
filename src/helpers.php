@@ -28,14 +28,20 @@ function page_title($title = '')
     return $title . 'The Lord\'s Wisdom Academy of Caloocan Inc.';
 }
 
+function baseURL()
+{
+    if (defined('BASE_URL'))
+        return BASE_URL;
+}
+
 function url($path = '')
 {
-    return BASE_URL . $path;
+    return baseURL() . $path;
 }
 
 function asset($path = '')
 {
-    return BASE_URL . 'assets/' . $path;
+    return baseURL() . 'assets/' . $path;
 }
 
 function sanitize_input($value)

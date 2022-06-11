@@ -6,10 +6,8 @@
     <?= component('layouts/headers') ?>
 </head>
 <body>
-    <?= component('layouts/navbar') ?>
+    <?= component_start('layouts/main') ?>
 
-
-    <?= component('layouts/footer') ?>
-    <?= component('layouts/scripts') ?>
+    <?= component_end() ?>
 </body>
 </html>

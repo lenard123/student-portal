@@ -3,3 +3,5 @@
 
 <link rel="stylesheet" type="text/css" href="<?= asset('css/main.css') ?>">
 <link rel="icon" type="img/png" href="<?= asset('img/logo.png') ?>">
+
+<?= isset($slot) ? $slot : ''  ?>

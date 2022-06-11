@@ -2,10 +2,23 @@
 
 ob_start();
 
-function component($name, $props = [])
+function getComponent($name)
 {
-    global $ROOT_PATH;
-    $file = $ROOT_PATH . './templates/'.$name.'.php';
+    $name = ROOT_PATH . '/templates/'.$name;
+
+    if (file_exists("{$name}.php")) 
+        return "{$name}.php";
+
+    if (is_dir($name) && file_exists($name.'/index.php')) {
+        return $name .'/index.php';
+    }
+
+    return $name . '.php';
+}
+
+function component($name, $props = ['slot' => null])
+{
+    $file = getComponent($name);
     if (!file_exists($file)) {
         abort(500, "Invalid component: $name\n File not found");
     }
@@ -33,4 +46,22 @@ function component($name, $props = [])
 
     ob_end_clean();
     return "\n$content\n";
+}
+
+
+$component_stack = [];
+
+function component_start($name, $props = [])
+{
+    global $component_stack;
+    ob_start();
+    array_push($component_stack, compact('name', 'props'));
+}
+
+function component_end()
+{
+    global $component_stack;
+    $template = array_pop($component_stack);
+    $template['props']['slot'] = ob_get_contents(); ob_end_clean();
+    echo component(...$template);
 }

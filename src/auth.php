@@ -1,57 +1,73 @@
 <?php
 
-function is_login()
+
+class Auth
 {
-    return session_has('user_id');
-}
 
-function is_admin_login()
-{
-    if (!is_login()) return false;
+    const STATUS_SUCCESS = 1;
+    const STATUS_INVALID_EMAIL = 2;
+    const STATUS_WRONG_PASSWORD = 3;
+    const STATUS_WRONG_CREDENTIAL = 4;
 
-    $user = current_user();
+    protected static $session_id = 'user_id';
 
-    return $user->role === ROLE_ADMIN;
-}
+    private static $user = null;
 
-function current_user_id()
-{
-    if (!is_login()) 
-        return null;
-    return intval(session_get('user_id'));
-}
+    public static function check()
+    {
+        return Session::has(static::$session_id);
+    }
 
-function current_user()
-{
-    static $user;
+    public static function id()
+    {
+        if (!static::check())
+            return null;
 
-    if (!is_login()) 
-        return null;
+        return intval(Session::get(static::$session_id, -1));
+    }
 
-    if (!$user) {
-        $user = User::find( current_user_id() );
-        if ($user === null) {
-            session_remove('user_id');
+    public static function user()
+    {
+        if (is_null(static::$user)) {
+            if (static::check()) {
+                static::$user = User::query()->find(static::id());
+            }
         }
-    } 
 
-    return $user;
-}
+        return static::$user;
+    }
 
-function authenticate_admin($email, $password)
-{
-    $user = User::where('email', $email)->first();
+    public static function logout()
+    {
+        static::$user = null;
+        Session::destroy(static::$session_id);
+    }
 
-    if ($user == null) 
-        return ERROR_WRONG_EMAIL;
+    public static function attempt($credential)
+    {
+        $user = User::where('email', $credential['email'])->first();
 
-    if (!password_verify($password, $user->password))
-        return ERROR_WRONG_PASSWORD;
+        if ($user === null)
+            return static::STATUS_INVALID_EMAIL;
 
-    if ($user->role !== ROLE_ADMIN)
-        return -1;
+        if (! password_verify($credential['password'], $user->password))
+            return static::STATUS_WRONG_PASSWORD;
 
-    session_set('admin_id', $user->id);
+        $result = static::validateAuth($user);
 
-    return SUCCESS;
+        if ($result === static::STATUS_SUCCESS){
+            static::$user = $user;
+            Session::set(static::$session_id, $user->id);
+        }
+
+        return $result;
+    }
+
+    protected static function validateAuth($user)
+    {
+        if ($user->isAdmin())
+            return static::STATUS_WRONG_CREDENTIAL;
+        return static::STATUS_SUCCESS;
+    }
+
 }

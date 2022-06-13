@@ -9,23 +9,29 @@ function dd($var)
 
 
 
-function response($status = 200, $data)
+function response($data, $status = 200)
 {
     http_response_code($status);
     header("Content-Type: application/json");
     die(json_encode($data));
 }
 
-function abort($status = 500, $message = 'Server Error', $data = null)
+function abort($message = 'Server Error', $status = 500, $data = null)
 {
     ob_end_clean();
-    response($status, compact('message', 'data'));
+    response(compact('message', 'data'), $status);
 }
 
-function page_title($title = '')
+function page_title($title = null)
 {
     if ($title) $title .= ' | ';
     return $title . 'The Lord\'s Wisdom Academy of Caloocan Inc.';
+}
+
+function student_title($title = null)
+{
+    if ($title) $title .= ' | ';
+    return $title . 'Student Portal';
 }
 
 function baseURL()
@@ -55,7 +61,9 @@ function redirect($location)
     exit();
 }
 
-function middleware($name)
+function middleware(...$names)
 {
-    require ROOT_PATH . '/middlewares/' . $name . '.php';
+    foreach ($names as $name) {
+        Middleware::$name();
+    }
 }

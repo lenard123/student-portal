@@ -1,24 +1,32 @@
 <?php
 
-session_start();
-
-function session_has($key)
+class Session
 {
-    return isset($_SESSION[$key]);
-}
+    public static function init()
+    {
+        session_start();
+    }   
 
-function session_set($key, $value) {
-    $_SESSION[$key] = $value;
-}
+    public static function has($key)
+    {
+        return isset($_SESSION[$key]);
+    }
 
-function session_get($key, $default = null)
-{
-    if (session_has($key))
-        return $_SESSION[$key];
-    return $default;
-}
+    public static function set($key, $value)
+    {
+        $_SESSION[$key] = $value;
+    }
 
-function session_remove($key)
-{
-    unset($_SESSION[$key]);
+    public static function get($key, $default = null)
+    {
+        if (static::has($key))
+            return $_SESSION[$key];
+
+        return $default;
+    }
+
+    public static function destroy($key)
+    {
+        unset($_SESSION[$key]);
+    }
 }

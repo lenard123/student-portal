@@ -18,12 +18,6 @@ function post($key, $default = null)
     if (isset($_POST[$key])) 
         return $_POST[$key];
 
-    $data = json_decode(file_get_contents("php://input"), TRUE);
-
-    if (isset($data[$key])) {
-        return $data[$key];
-    }
-
     return $default;
 }
 
@@ -34,4 +28,13 @@ function request($key, $default = null)
     if (post($key) !== null) return post($key);
 
     return $default;
+}
+
+function request_only(...$keys)
+{
+    $value = [];
+    foreach ($keys as $key) {
+        $value[$key] = request($key);
+    }
+    return $value;
 }

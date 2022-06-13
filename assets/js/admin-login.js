@@ -3,12 +3,12 @@ import useMutator from './useMutator.js'
 import { adminLoginApi } from './api.js'
 import { getErrorMessage } from './util.js'
 
+const onSuccess = () => {
+    window.location.href = BASE_URL + 'admin/index.php';
+}
+
 const App = createApp({
     setup() {
-
-        const onSuccess = () => {
-            window.location.href = BASE_URL + 'admin/index.php';
-        }
 
         const { isLoading, execute, isError, data, error } = useMutator(adminLoginApi, {onSuccess})
 
@@ -19,7 +19,10 @@ const App = createApp({
         })
 
         const login = () => {
-            if (isLoading) execute({ email: email.value, password: password.value })
+            if (isLoading.value) 
+                return;
+
+            execute({ email: email.value, password: password.value })
         }
 
         return {

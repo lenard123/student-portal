@@ -7,9 +7,19 @@ export const invoke = (callback, ...params) => {
 
 export const getErrorMessage = (error) => {
 
-    if (error?.response?.data?.message) {
-        return error.response.data.message;
+    if (error?.response?.status === 404) {
+        return ['Page not found']
     }
 
-    return 'An unknown error occured'
+    if (error?.response?.data?.message) {
+        const { message } = error.response.data
+
+        if (Array.isArray(message)) 
+            return message
+
+        return [message]
+    }
+
+
+    return ['An unknown error occured']
 }

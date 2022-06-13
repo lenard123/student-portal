@@ -18,12 +18,12 @@ const useMutator = (callback, option) => {
         try {
             const result = await callback(params)
             isSuccess.value = true
-            data.value = result
-            invoke(option?.onSuccess, data)
+            data.value = result.data
+            invoke(option?.onSuccess, data.value)
         } catch (_error) {
             isError.value = true
             error.value = _error
-            invoke(option?.onError, _error)
+            invoke(option?.onError, error.value)
         } finally {
             isLoading.value = false
         }

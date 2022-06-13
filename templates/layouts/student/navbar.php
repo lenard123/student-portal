@@ -1,19 +1,14 @@
-<header class="navbar bg-base-100 shadow-md">
+<header class="navbar bg-base-100 shadow-md h-16">
 
     <!-- Left -->
     <div class="flex-1">
 
-        <a href="<?= url('student') ?>" class="btn btn-ghost normal-case text-xl space-x-2">
-            <img src="<?= asset('img/logo.png') ?>" height="36" width="36">
-            <span>Student Portal</span>
-        </a>
-
-        <ul class="hidden md:flex menu menu-horizontal p-0">
+<!--         <ul class="hidden md:flex menu menu-horizontal p-0">
             <li><a href="<?= url('student') ?>">Classes</a></li>
             <li><a href="<?= url('student/events.php') ?>">Events</a></li>
             <li><a href="<?= url('student/announcements.php') ?>">Announcements</a></li>
             <li><a href="<?= url('student/messages.php') ?>">Messages</a></li>
-        </ul>
+        </ul> -->
 
     </div>
 
@@ -24,7 +19,7 @@
             <div tabindex="0">
                 <div class="avatar">
                     <div class="w-12 rounded-full">
-                        <img src="<?= Auth::user()->avatar_url ?>" />
+                        <img src="<?= Auth::user()->avatar ?>" />
                     </div>
                 </div>
             </div>

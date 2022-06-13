@@ -8,7 +8,7 @@ body {
 }
 
 .navbar {
-    @apply sm:px-8 py-4;
+    @apply sm:px-8;
 }
 
 [v-cloak] {

@@ -46,7 +46,7 @@ class User extends Model
         return $query->where('role', static::ROLE_ADMIN);
     }
 
-    public function getAvatarUrlAttribute()
+    public function getAvatarAttribute()
     {
         $seed = urlencode($this->firstname);
         return "https://avatars.dicebear.com/api/initials/{$seed}.svg";

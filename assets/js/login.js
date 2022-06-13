@@ -1,10 +1,12 @@
-import { createApp, ref, computed, onMounted } from './vue.js'
-import useMutator from './useMutator.js'
-import { loginApi } from './api.js'
-import { getErrorMessage } from './util.js'
+import { createApp, ref, computed, onMounted } from './libs/vue.js'
+import useMutator from './libs/useMutator.js'
+import { getErrorMessage } from './libs/util.js'
+
+export const loginApi = async (data) => {
+    return await axios.post('authenticate_user.php', data)
+}
 
 const onSuccess = (data) => {
-    console.log({data})
     if (data.role === ROLE_STUDENT) {
         window.location.href = BASE_URL + 'student'
     } else if (data.role === ROLE_TEACHER){

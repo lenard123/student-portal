@@ -18,6 +18,7 @@ require_once 'src/Middleware.php';
 
 require_once 'models/Model.php';
 require_once 'models/User.php';
+require_once 'models/Classes.php';
 
 Session::init();
 middleware('merge_post_data');

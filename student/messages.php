@@ -7,6 +7,16 @@
     <?= component('layouts/headers') ?>
 </head>
 <body>
-<?= component('layouts/student') ?>
+<?= component_start('layouts/student') ?>
+
+    <div class="container py-8">
+
+        <h1 class="text-2xl font-semibold">Messages</h1>
+
+        <div class="divider"></div>
+
+    </div>
+
+<?= component_end() ?>
 </body>
 </html>

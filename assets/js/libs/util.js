@@ -1,4 +1,6 @@
 
+export { default as useMutator } from './useMutator.js'
+
 export const invoke = (callback, ...params) => {
     if (typeof callback === 'function') {
         return callback(...params)

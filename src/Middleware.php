@@ -14,6 +14,18 @@ class Middleware
             redirect('login.php');
     }
 
+    public static function admin_only()
+    {
+        if (!AdminAuth::check())
+            redirect('admin/login.php');
+    }
+
+    public static function guest_admin()
+    {
+        if (AdminAuth::check())
+            redirect('admin');
+    }
+
     public static function authenticated()
     {
         if (! Auth::check() )

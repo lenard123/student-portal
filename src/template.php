@@ -36,7 +36,7 @@ function component($name, $props = ['slot' => null])
     } catch (Error $e) {
         ob_end_clean();
         ob_end_clean();
-        abort(500, "Error parsing component: $name\n".$e->getMessage());
+        abort("Error parsing component: $name\n".$e->getMessage());
     }
 
     //Get Contents

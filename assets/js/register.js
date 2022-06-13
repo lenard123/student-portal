@@ -1,14 +1,16 @@
-import { createApp, ref, unref, reactive, computed } from './vue.js'
-import useMutator from './useMutator.js'
-import { registerApi } from './api.js'
-import { getErrorMessage } from './util.js'
+import { createApp, ref, unref, reactive, computed } from './libs/vue.js'
+import useMutator from './libs/useMutator.js'
+import { getErrorMessage } from './libs/util.js'
+
+export const registerApi = async (data) => {
+    return await axios.post('register.php', data)
+}
 
 createApp({
     setup() {
 
         const { execute, isLoading, isError, error } = useMutator(registerApi, {
-            onSuccess()
-            {
+            onSuccess() {
                 window.location.href = BASE_URL + 'login.php?status=REGISTERED'
             }
         })

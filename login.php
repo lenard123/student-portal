@@ -17,7 +17,7 @@
 
                     <div class="card-title">Login to Student Portal</div>
 
-                    <form @submit.prevent="login">
+                    <form @submit.prevent="login" method="POST">
 
                         <?php if (get('status') === 'REGISTERED') : ?>
                         <div v-if="!hideSuccessAlert" class="alert alert-success mt-4">
@@ -87,6 +87,10 @@
         </div>
 
     <?= component_end() ?>
-    <?= component('layouts/scripts', ['src' => 'login']) ?>
+    <?= component('layouts/scripts', [
+        'libs' => ['axios'],
+        'srcs' => ['login']
+        ]) 
+    ?>
 </body>
 </html>

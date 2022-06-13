@@ -34,6 +34,12 @@ function student_title($title = null)
     return $title . 'Student Portal';
 }
 
+function teacher_title($title = null)
+{
+    if ($title) $title .= ' | ';
+    return $title . 'Teacher Portal';   
+}
+
 function baseURL()
 {
     if (defined('BASE_URL'))
@@ -66,4 +72,14 @@ function middleware(...$names)
     foreach ($names as $name) {
         Middleware::$name();
     }
+}
+
+function generateRandomString($length = 10) {
+    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $charactersLength = strlen($characters);
+    $randomString = '';
+    for ($i = 0; $i < $length; $i++) {
+        $randomString .= $characters[rand(0, $charactersLength - 1)];
+    }
+    return $randomString;
 }

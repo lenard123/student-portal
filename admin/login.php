@@ -1,5 +1,5 @@
 <?php require_once '__bootstrap.php' ?>
-<?php middleware('not_admin') ?>
+<?php middleware('guest_admin') ?>
 <!DOCTYPE html>
 <html>
 <head>

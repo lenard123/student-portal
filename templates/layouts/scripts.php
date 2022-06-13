@@ -1,4 +1,13 @@
-<script src="<?= asset('js/axios.js') ?>"></script>
+<?php
+    $library = [
+        'axios' => asset('js/libs/axios.js'),
+    ];
+?>
+
+<?php foreach ($libs ?? [] as $lib) : ?>
+    <script src="<?= $library[$lib] ?>"></script>
+<?php endforeach ?>
+
 <script type="text/javascript">
     window.ROLE_STUDENT = <?= json_encode(User::ROLE_STUDENT) ?>;
     window.ROLE_TEACHER = <?= json_encode(User::ROLE_TEACHER) ?>;
@@ -7,9 +16,11 @@
     window.GENDER_FEMALE = <?= json_encode(User::GENDER_FEMALE) ?>;
     window.API_URL = <?= json_encode(url('api')) ?>;
     window.BASE_URL = <?= json_encode(url()) ?>;
-    window.axios.defaults.baseURL = window.API_URL;
+
+    if (window.axios)
+        window.axios.defaults.baseURL = window.API_URL;
 </script>
 
-<?php if (isset($src)) : ?>
+<?php foreach ($srcs ?? [] as $src) : ?>
     <script type="module" src="<?= asset("js/{$src}.js") ?>"></script>
-<?php endif ?>
+<?php endforeach ?>

@@ -1,7 +1,10 @@
-import { createApp, ref, computed } from './vue.js'
-import useMutator from './useMutator.js'
-import { adminLoginApi } from './api.js'
-import { getErrorMessage } from './util.js'
+import { createApp, ref, computed } from './libs/vue.js'
+import useMutator from './libs/useMutator.js'
+import { getErrorMessage } from './libs/util.js'
+
+export const adminLoginApi = async (data) => {
+    return await axios.post('authenticate_admin.php', data)
+}
 
 const onSuccess = () => {
     window.location.href = BASE_URL + 'admin/index.php';

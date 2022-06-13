@@ -5,3 +5,5 @@ if (!defined('ROOT_PATH')) {
 }
 
 require_once '../__bootstrap.php';
+
+middleware('teachers_only');

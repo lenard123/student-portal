@@ -15,7 +15,7 @@ validate_request([
 ]);
 
 if (User::where('email', request('email'))->exists()) {
-    abort(422, 'Email already registered');
+    abort('Email already registered', 422);
 }
 
 $user = User::create(request_only(
@@ -29,4 +29,4 @@ $user = User::create(request_only(
     'gender'
 ));
 
-response(201, $user);
+response($user, 201);

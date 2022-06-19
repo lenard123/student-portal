@@ -1,9 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title><?= student_title(@$title) ?></title>
+    <?= component('layouts/headers') ?>
+</head>
+<body>
 <div class="drawer drawer-mobile">
   <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
   <div class="drawer-content flex flex-col items-center justify-center">
     <!-- Page content here -->
     <?= component('layouts/student/navbar') ?>
-    <main class="flex-grow bg-base-200 w-full">
+    <main class="flex-grow overflow-y-auto bg-base-200 w-full">
       <?= $slot ?>
     </main>
   </div> 
@@ -21,8 +29,17 @@
         <li><a href="<?= url('student/events.php') ?>">Events</a></li>
         <li><a href="<?= url('student/announcements.php') ?>">Announcements</a></li>
         <li><a href="<?= url('student/messages.php') ?>">Messages</a></li>
+        <li><a href="<?= url('student/archives.php') ?>">Archived Class</a></li>
+        <li><a href="<?= url('student/settings.php') ?>">Settings</a></li>
       </ul>
     </div>
   
   </div>
 </div>
+
+<?= @$slots['body_end'] ?>
+
+<?= component('layouts/scripts', ['libs' => @$libs, 'srcs' => @$srcs]) ?>
+
+</body>
+</html>

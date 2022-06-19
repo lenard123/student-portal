@@ -1,13 +1,8 @@
-<?php require_once '__bootstrap.php' ?>
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <title><?= student_title('Events') ?></title>
-    <?= component('layouts/headers') ?>
-</head>
-<body>
-<?= component_start('layouts/student') ?>
+<?php 
+require_once '__bootstrap.php';
+$title = 'Events';
+?>
+<?= component_start('layouts/student', compact('title')) ?>
     <div class="container py-8">
 
         <h1 class="text-2xl font-semibold">School Events</h1>
@@ -16,5 +11,3 @@
 
     </div>
 <?= component_end() ?>
-</body>
-</html>

@@ -1,7 +1,12 @@
 <?php
-    $library = [
-        'axios' => asset('js/libs/axios.js'),
-    ];
+$library = [
+    'axios' => asset('js/libs/axios.js'),
+];
+
+$srcs = is_array(@$srcs) 
+            ? $srcs
+            : (is_null(@$srcs) ? [] : [$srcs]);
+
 ?>
 
 <?php foreach ($libs ?? [] as $lib) : ?>
@@ -21,6 +26,6 @@
         window.axios.defaults.baseURL = window.API_URL;
 </script>
 
-<?php foreach ($srcs ?? [] as $src) : ?>
+<?php foreach ($srcs as $src) : ?>
     <script type="module" src="<?= asset("js/{$src}.js") ?>"></script>
 <?php endforeach ?>

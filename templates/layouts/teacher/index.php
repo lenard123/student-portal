@@ -12,7 +12,7 @@
   <div class="drawer-content flex flex-col items-center justify-center">
     <!-- Page content here -->
     <?php include 'navbar.php' ?>
-    <main class="flex-grow bg-base-200 w-full">
+    <main class="flex-grow bg-base-200 w-full overflow-y-auto">
       <?= $slot ?>
     </main>
   </div> 

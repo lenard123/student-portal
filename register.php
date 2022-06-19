@@ -156,8 +156,7 @@
 
     <?= component_end() ?>
     <?= component('layouts/scripts', [
-        'libs' => ['axios'],
-        'srcs' => ['register']
+        'srcs' => 'register'
     ]) ?>
 </body>
 </html>

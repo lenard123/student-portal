@@ -26,6 +26,7 @@ const useMutator = (callback, option) => {
             invoke(option?.onError, error.value)
         } finally {
             isLoading.value = false
+            invoke(option?.onSettled, { error, data })
         }
     }
 

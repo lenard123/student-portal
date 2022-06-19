@@ -56,7 +56,7 @@ class Middleware
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $request_body = json_decode(file_get_contents("php://input"), TRUE);
 
-            $_POST = $_POST + $request_body;
+            $_POST = $_POST + ($request_body ?? []);
         }
     }
 

@@ -1,9 +1,10 @@
+import { post } from './libs/request.js'
 import { createApp, ref, unref, reactive, computed } from './libs/vue.js'
 import useMutator from './libs/useMutator.js'
 import { getErrorMessage } from './libs/util.js'
 
 export const registerApi = async (data) => {
-    return await axios.post('register.php', data)
+    return await post('register.php', data)
 }
 
 createApp({

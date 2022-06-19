@@ -1,3 +1,4 @@
+import { post } from './libs/request.js'
 import { createApp, ref, computed, reactive } from './libs/vue.js'
 import { useMutator, getErrorMessage } from './libs/util.js'
 

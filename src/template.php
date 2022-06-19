@@ -27,8 +27,10 @@ function component($name, $props = ['slot' => null])
     ob_start();
 
     //Pass variables
-    foreach($props as $key => $value)
-        $$key = $value;
+    if (is_array($props)) {
+        foreach($props as $key => $value)
+            $$key = $value;
+    }
 
     try {
         //Parse Components
@@ -50,10 +52,10 @@ function component($name, $props = ['slot' => null])
 
 
 $component_stack = [];
-
 function component_start($name, $props = [])
 {
     global $component_stack;
+    $props['slots'] = array();
     ob_start();
     array_push($component_stack, compact('name', 'props'));
 }
@@ -64,4 +66,21 @@ function component_end()
     $template = array_pop($component_stack);
     $template['props']['slot'] = ob_get_contents(); ob_end_clean();
     echo component(...$template);
+}
+
+function slot($name)
+{
+    global $component_stack;
+    ob_start();
+    array_push($component_stack, compact('name'));
+}
+
+function slot_end() {
+    global $component_stack;
+    $template = array_pop($component_stack);
+    $slot_name = $template['name'];
+
+    $component = array_pop($component_stack);
+    $component['props']['slots'][$slot_name] = ob_get_contents(); ob_end_clean();
+    array_push($component_stack, $component);
 }

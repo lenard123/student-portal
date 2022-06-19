@@ -26,6 +26,17 @@ class Auth
         return intval(Session::get(static::$session_id, -1));
     }
 
+    public static function role($role = null)
+    {
+        if (!Auth::check()) 
+            return null;
+
+        if (! is_null($role) )
+            return Auth::user()->role === $role;
+
+        return Auth::user()->role;
+    }
+
     public static function user()
     {
         if (is_null(static::$user)) {

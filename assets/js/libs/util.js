@@ -9,12 +9,12 @@ export const invoke = (callback, ...params) => {
 
 export const getErrorMessage = (error) => {
 
-    if (error?.response?.status === 404) {
+    if (error?.status === 404) {
         return ['Page not found']
     }
 
-    if (error?.response?.data?.message) {
-        const { message } = error.response.data
+    if (error?.data?.message) {
+        const { message } = error.data
 
         if (Array.isArray(message)) 
             return message
@@ -24,4 +24,8 @@ export const getErrorMessage = (error) => {
 
 
     return ['An unknown error occured']
+}
+
+export const redirect = (location) => {
+    window.location.href = window.BASE_URL + '/' + location
 }

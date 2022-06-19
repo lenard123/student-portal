@@ -67,6 +67,12 @@ function redirect($location)
     exit();
 }
 
+function back()
+{
+    header('Location: ' . $_SERVER['HTTP_REFERER']);
+    exit();
+}
+
 function middleware(...$names)
 {
     foreach ($names as $name) {

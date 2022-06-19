@@ -87,10 +87,6 @@
         </div>
 
     <?= component_end() ?>
-    <?= component('layouts/scripts', [
-        'libs' => ['axios'],
-        'srcs' => ['login']
-        ]) 
-    ?>
+    <?= component('layouts/scripts', ['srcs' => 'login']) ?>
 </body>
 </html>

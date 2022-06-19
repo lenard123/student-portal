@@ -19,6 +19,8 @@ require_once 'src/Middleware.php';
 require_once 'models/Model.php';
 require_once 'models/User.php';
 require_once 'models/Classes.php';
+require_once 'models/Post.php';
 
 Session::init();
 middleware('merge_post_data');
+date_default_timezone_set('Asia/Manila');

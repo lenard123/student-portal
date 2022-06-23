@@ -1,3 +1,10 @@
+<?php
+function active($page)
+{
+    global $active;
+    return $page === $active ? 'bordered' : ''; 
+}
+?>
 <div class="container py-8">
     <div class="bg-base-100 overflow-hidden rounded-lg">
         <div class="h-52 w-full relative">
@@ -16,10 +23,16 @@
                 <div class="font-bold text-lg text-primary mt-2"><?= $class->code ?></div>
             </div>
 
-            <ul class="menu bg-base-100 w-full rounded-box border border-gray-300">
-              <li class="bordered"><a>Stream</a></li>
-              <li><a>Classwork</a></li>
-              <li><a>People</a></li>
+            <ul class="menu bg-base-100 w-full rounded-lg border border-gray-300">
+              <li class="<?= active('stream') ?>">
+                <a href="<?= url(Auth::role() . '/class.php?code=' . $class->code) ?>">Stream</a>
+              </li>
+              <li class="<?= active('work') ?>">
+                <a href="<?= url(Auth::role() . '/work.php?code=' . $class->code) ?>">Classwork</a>
+              </li>
+              <li class="<?= active('people') ?>">
+                <a href="<?= url(Auth::role() . '/people.php?code=' . $class->code) ?>">People</a>
+              </li>
             </ul>
 
         </div>

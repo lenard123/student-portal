@@ -10,6 +10,11 @@
             <div class="font-semibold leading-4"><?= $teacher->fullname ?></div>
             <div class="text-sm text-gray-700"><?= $post->created_at->diffForHumans() ?></div>
         </div>
+<!--         <button>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+              <path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z" />
+            </svg>
+        </button> -->
     </div>
     <div class="py-4 px-2">
         <p class="font-sans whitespace-pre-wrap"><?= $post->content ?></p>

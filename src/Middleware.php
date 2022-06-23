@@ -44,6 +44,17 @@ class Middleware
 
     }
 
+    public static function can_view_class()
+    {
+        $code = get('code');
+        $class = Classes::where('code', $code)->first();
+
+        if ( is_null($class) || !Auth::user()->canViewClass($class)) {
+            die(component('errors/404'));
+        }
+        return $class;
+    }
+
     public static function post_method_only()
     {
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
@@ -62,6 +73,6 @@ class Middleware
 
     public static function __callStatic($name, $args)
     {
-        require ROOT_PATH . '/middlewares/' . $name . '.php';
+        return require ROOT_PATH . '/middlewares/' . $name . '.php';
     }
 }

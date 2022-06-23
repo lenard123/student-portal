@@ -75,9 +75,11 @@ function back()
 
 function middleware(...$names)
 {
+    $last = null;
     foreach ($names as $name) {
-        Middleware::$name();
+        $last = Middleware::$name();
     }
+    return $last;
 }
 
 function generateRandomString($length = 10) {

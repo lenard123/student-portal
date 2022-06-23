@@ -58,6 +58,15 @@ class User extends Model
             ->exists();
     }
 
+    public function canViewClass(Classes $class)
+    {
+        if ($this->isTeacher()) {
+            return $class->teacher_id = $this->id;
+        }
+
+        return $this->isEnrolled($class);
+    }
+
     public function scopeAdmin($query)
     {
         return $query->where('role', static::ROLE_ADMIN);

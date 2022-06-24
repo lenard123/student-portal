@@ -4,18 +4,16 @@ require_once '__bootstrap.php';
 
 middleware('post_method_only');
 
-$email = request('email');
-$password = request('password');
-
-$result = AdminAuth::login($email, $password);
+$result = AdminAuth::attempt(request_only('email', 'password'));
 
 switch ($result) {
-    case ERROR_WRONG_EMAIL:
-    case ERROR_WRONG_PASSWORD:
+    case AdminAuth::STATUS_INVALID_EMAIL:
+    case AdminAuth::STATUS_WRONG_PASSWORD:
+    case AdminAuth::STATUS_WRONG_CREDENTIAL:
         abort('Wrong Email or Password', 401);
         break;
     
-    case SUCCESS:
+    case AdminAuth::STATUS_SUCCESS:
         response(['message' => 'Successfully Login']);
         break;
 

@@ -74,7 +74,7 @@ class Auth
         return $result;
     }
 
-    protected static function validateAuth($user)
+    protected static function validateAuth(User $user)
     {
         if ($user->isAdmin())
             return static::STATUS_WRONG_CREDENTIAL;

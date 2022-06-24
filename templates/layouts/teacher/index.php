@@ -34,7 +34,7 @@
   
   </div>
 </div>
-
+<?= @getSlot('body_end') ?>
 <?= component('layouts/scripts', ['libs' => @$libs, 'srcs' => @$srcs]) ?>
 
 </body>

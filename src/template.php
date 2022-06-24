@@ -68,19 +68,25 @@ function component_end()
     echo component(...$template);
 }
 
+$slot_stack = array();
+$slots = array();
+
 function slot($name)
 {
-    global $component_stack;
+    global $slot_stack;
+    array_push($slot_stack, $name);
     ob_start();
-    array_push($component_stack, compact('name'));
 }
 
 function slot_end() {
-    global $component_stack;
-    $template = array_pop($component_stack);
-    $slot_name = $template['name'];
+    global $slot_stack, $slots;
+    $slot_name = array_pop($slot_stack);
+    $content = ob_get_contents(); ob_end_clean();
+    $slots[$slot_name] = $content;
+}
 
-    $component = array_pop($component_stack);
-    $component['props']['slots'][$slot_name] = ob_get_contents(); ob_end_clean();
-    array_push($component_stack, $component);
+function getSlot($name)
+{
+    global $slots;
+    return $slots[$name];
 }

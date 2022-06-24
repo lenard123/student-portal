@@ -1,9 +1,11 @@
 import { createApp, ref, computed } from './libs/vue.js'
 import useMutator from './libs/useMutator.js'
 import { getErrorMessage } from './libs/util.js'
+import { post } from './libs/request.js'
+
 
 export const adminLoginApi = async (data) => {
-    return await axios.post('authenticate_admin.php', data)
+    return await post('authenticate_admin.php', data)
 }
 
 const onSuccess = () => {
@@ -17,7 +19,7 @@ const App = createApp({
 
         const email = ref('')
         const password = ref('')
-        const errorMessage = computed(() => {
+        const errorMessages = computed(() => {
             return getErrorMessage(error.value)
         })
 
@@ -33,7 +35,7 @@ const App = createApp({
             password,
             isLoading,
             login,
-            errorMessage,
+            errorMessages,
             isError
         }
     }

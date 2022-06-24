@@ -57,8 +57,7 @@
       <div class="admin-menu p-4 flex flex-col text-slate-200">
         <a href="#">Dashboard</a>
         <a href="#">Events</a>
-        <a href="#">Announcements</a>
-        <a href="#">Reports</a>
+        <a href="<?= url('admin/announcements.php') ?>">Announcements</a>
         <a href="#">Messages</a>
         <a href="#">Settings</a>
       </div>

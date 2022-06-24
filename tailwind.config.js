@@ -1,4 +1,5 @@
 const daisyUI = require('daisyui')
+const defaultTheme = require('tailwindcss/defaultTheme')
 
 module.exports = {
   content: [
@@ -13,7 +14,11 @@ module.exports = {
       center: true,
       padding: '1rem'
     },
-    extend: {},
+    extend: {
+      fontFamily: {
+        'sans': ['Inter', ...defaultTheme.fontFamily.sans]
+      }
+    },
   },
   plugins: [
     daisyUI

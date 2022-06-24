@@ -3,7 +3,11 @@
 # and commit this file to your remote git repository to share the goodness with others.
 
 tasks:
-  - init: npm install
+  - init: |
+      npm install
+      composer install
+      cp __config.copy.php __config.php
     command: npm run watch
+  - command: php -S 0.0.0.0:8080
 
 

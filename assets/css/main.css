@@ -3529,6 +3529,11 @@ body[dir="rtl"] .checkbox:checked,
   position: relative;
 }
 
+.sticky {
+  position: -webkit-sticky;
+  position: sticky;
+}
+
 .inset-0 {
   top: 0px;
   right: 0px;
@@ -3542,6 +3547,10 @@ body[dir="rtl"] .checkbox:checked,
 
 .left-4 {
   left: 1rem;
+}
+
+.top-0 {
+  top: 0px;
 }
 
 .z-10 {
@@ -3558,11 +3567,6 @@ body[dir="rtl"] .checkbox:checked,
   margin-right: -1rem;
 }
 
-.my-2 {
-  margin-top: 0.5rem;
-  margin-bottom: 0.5rem;
-}
-
 .my-3 {
   margin-top: 0.75rem;
   margin-bottom: 0.75rem;
@@ -3571,6 +3575,11 @@ body[dir="rtl"] .checkbox:checked,
 .-mx-3 {
   margin-left: -0.75rem;
   margin-right: -0.75rem;
+}
+
+.my-2 {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 
 .mt-4 {
@@ -3585,20 +3594,16 @@ body[dir="rtl"] .checkbox:checked,
   margin-left: 0.5rem;
 }
 
-.mb-2 {
-  margin-bottom: 0.5rem;
-}
-
 .mt-2 {
   margin-top: 0.5rem;
 }
 
-.mb-8 {
-  margin-bottom: 2rem;
+.mb-2 {
+  margin-bottom: 0.5rem;
 }
 
-.mt-3 {
-  margin-top: 0.75rem;
+.mb-8 {
+  margin-bottom: 2rem;
 }
 
 .block {
@@ -3649,16 +3654,16 @@ body[dir="rtl"] .checkbox:checked,
   height: 2rem;
 }
 
+.h-\[1px\] {
+  height: 1px;
+}
+
 .h-16 {
   height: 4rem;
 }
 
 .h-52 {
   height: 13rem;
-}
-
-.h-\[1px\] {
-  height: 1px;
 }
 
 .max-h-\[100vh\] {
@@ -3701,8 +3706,8 @@ body[dir="rtl"] .checkbox:checked,
   width: 2rem;
 }
 
-.w-52 {
-  width: 13rem;
+.w-\[11rem\] {
+  width: 11rem;
 }
 
 .w-64 {
@@ -3713,8 +3718,8 @@ body[dir="rtl"] .checkbox:checked,
   width: 20rem;
 }
 
-.w-\[11rem\] {
-  width: 11rem;
+.w-52 {
+  width: 13rem;
 }
 
 .min-w-\[256px\] {
@@ -3910,6 +3915,11 @@ body[dir="rtl"] .checkbox:checked,
   background-color: rgb(71 85 105 / var(--tw-bg-opacity));
 }
 
+.bg-gray-300 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(209 213 219 / var(--tw-bg-opacity));
+}
+
 .bg-slate-100 {
   --tw-bg-opacity: 1;
   background-color: rgb(241 245 249 / var(--tw-bg-opacity));
@@ -3925,9 +3935,9 @@ body[dir="rtl"] .checkbox:checked,
   background-color: rgb(55 65 81 / var(--tw-bg-opacity));
 }
 
-.bg-gray-300 {
+.bg-slate-200 {
   --tw-bg-opacity: 1;
-  background-color: rgb(209 213 219 / var(--tw-bg-opacity));
+  background-color: rgb(226 232 240 / var(--tw-bg-opacity));
 }
 
 .stroke-current {
@@ -3955,12 +3965,12 @@ body[dir="rtl"] .checkbox:checked,
   padding: 2rem;
 }
 
-.p-0 {
-  padding: 0px;
-}
-
 .p-3 {
   padding: 0.75rem;
+}
+
+.p-0 {
+  padding: 0px;
 }
 
 .py-16 {
@@ -4018,14 +4028,14 @@ body[dir="rtl"] .checkbox:checked,
   padding-right: 0.5rem;
 }
 
-.py-24 {
-  padding-top: 6rem;
-  padding-bottom: 6rem;
-}
-
 .py-1 {
   padding-top: 0.25rem;
   padding-bottom: 0.25rem;
+}
+
+.py-24 {
+  padding-top: 6rem;
+  padding-bottom: 6rem;
 }
 
 .pb-12 {
@@ -4034,10 +4044,6 @@ body[dir="rtl"] .checkbox:checked,
 
 .pt-4 {
   padding-top: 1rem;
-}
-
-.pr-2 {
-  padding-right: 0.5rem;
 }
 
 .text-center {
@@ -4182,6 +4188,10 @@ body[dir="rtl"] .checkbox:checked,
   --tw-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
   --tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+* {
+  scroll-behavior: smooth;
 }
 
 body {

@@ -47,7 +47,7 @@ function component($name, $props = ['slot' => null])
     //End Outbuffering
 
     ob_end_clean();
-    return "\n$content\n";
+    return "$content";
 }
 
 

@@ -2,7 +2,6 @@
 <?php 
     $props = [
         'title' => 'Create New Class',
-        'libs' => ['axios'],
         'srcs' => ['add_class'],
     ] 
 ?>

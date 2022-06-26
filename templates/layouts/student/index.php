@@ -11,7 +11,7 @@
   <div class="drawer-content flex flex-col items-center justify-center">
     <!-- Page content here -->
     <?= component('layouts/student/navbar') ?>
-    <main class="flex-grow overflow-y-auto bg-base-200 w-full">
+    <main class="flex-grow overflow-y-auto bg-slate-100 w-full">
       <?= $slot ?>
     </main>
   </div> 

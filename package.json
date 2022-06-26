@@ -1,11 +1,12 @@
 {
   "scripts": {
+    "serve": "php -S localhost:8080",
     "watch": "npx tailwindcss -i ./assets/src/css/main.css -o ./assets/css/main.css --watch"
   },
   "devDependencies": {
-    "tailwindcss": "^3.0.24"
+    "tailwindcss": "^3.0.24",
+    "daisyui": "^2.15.3"
   },
   "dependencies": {
-    "daisyui": "^2.15.3"
   }
 }

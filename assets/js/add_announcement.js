@@ -2,28 +2,25 @@ import { post } from './libs/request.js'
 import { createApp, ref, computed, reactive } from './libs/vue.js'
 import { useMutator, getErrorMessage } from './libs/util.js'
 
-const addClassApi = async (data) => {
-    return await post('add_class.php', data)
-}
-
 createApp({
-
     setup() {
 
-        const { isLoading, isError, error, execute } = useMutator(addClassApi, {
-            onSuccess() {
-                window.location.href = BASE_URL + 'teacher/'
+        const { isLoading, execute, isError, error } = useMutator(
+            async (data) => await post('add_announcement.php', data),
+            {
+                onSuccess(){ 
+                    window.location.reload()
+                }
             }
-        })
+        )
 
         const errorMessages = computed(() => {
             return getErrorMessage(error.value)
         })
 
         const data = reactive({
-            name: '',
-            grade: '',
-            section: ''
+            title: '',
+            description: ''
         })
 
         const handleSubmit = () => {
@@ -31,6 +28,12 @@ createApp({
             execute(data)
         }
 
-        return { data, handleSubmit, isLoading, errorMessages, isError }
+        return {
+            data,
+            handleSubmit,
+            isLoading,
+            isError,
+            errorMessages
+        }
     }
-}).mount('#add-class-page')
+}).mount('#add-announcement-form')

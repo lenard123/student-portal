@@ -9,6 +9,6 @@ class AdminAuth extends Auth
         if ($user->isAdmin())
             return static::STATUS_SUCCESS;
 
-        return parent::validateAuth($user);
+        return static::STATUS_WRONG_CREDENTIAL;
     }
 }

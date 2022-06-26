@@ -1,5 +1,7 @@
 const daisyUI = require('daisyui')
 const defaultTheme = require('tailwindcss/defaultTheme')
+const daisyUITheme = require("daisyui/src/colors/themes")
+const colors = require('tailwindcss/colors')
 
 module.exports = {
   content: [
@@ -16,11 +18,21 @@ module.exports = {
     },
     extend: {
       fontFamily: {
-        'sans': ['Inter', ...defaultTheme.fontFamily.sans]
+        'inter': ['Inter', ...defaultTheme.fontFamily.sans]
       }
     },
   },
   plugins: [
     daisyUI
   ],
+  daisyui: {
+    themes: [
+      {
+        light: {
+          ...daisyUITheme["[data-theme=light]"],
+          primary: colors.blue['500'],
+        }
+      }
+    ]
+  }
 }

@@ -1,3 +1,10 @@
+<?php
+
+$isActive = function($navLink) use ($active) 
+{
+  return $navLink == @$active ? 'active': '';
+}
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -54,10 +61,10 @@
           <span class="text-xl font-bold">Teachers Portal</span>
       </div>
 
-      <div class="admin-menu p-4 flex flex-col text-slate-200">
-        <a href="#">Dashboard</a>
+      <div class="admin-menu p-4 flex flex-col text-slate-200 font-inter gap-1">
+        <a class="<?= $isActive('dashboard') ?>" href="<?= url('admin') ?>">Dashboard</a>
         <a href="#">Events</a>
-        <a href="<?= url('admin/announcements.php') ?>">Announcements</a>
+        <a class="<?= $isActive('announcements') ?>" href="<?= url('admin/announcements.php') ?>">Announcements</a>
         <a href="#">Messages</a>
         <a href="#">Settings</a>
       </div>

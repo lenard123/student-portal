@@ -32,6 +32,11 @@ class Classes extends Model
         return $this->hasMany(Post::class, 'class_id')->latest();
     }
 
+    public function getCoverAttribute()
+    {
+        return asset($this->attributes['cover']);
+    }
+
     public static function generateCode()
     {
         return strtoupper(generateRandomString(4) . '-' . generateRandomString(4));
@@ -41,7 +46,7 @@ class Classes extends Model
     {
         $covers = static::$covers;        
         $i = rand(0, count($covers) - 1);
-        return asset($covers[$i]);
+        return $covers[$i];
     }
 
 }

@@ -12,13 +12,13 @@ $students = $class->students()->get();
                         <img src="<?= $class->teacher->avatar ?>">
                     </div>
                 </div>              
-                <div class="text-lg"><?= $class->teacher->fullname ?></div>                  
+                <div class="text-base font-semibold"><?= $class->teacher->fullname ?></div>                  
             </div>
         </div>
 
         <h4 class="card-title">Students</h4>
         <div class="divider my-2"></div>
-        <div>
+        <div class="flex flex-col gap-1">
             <?php foreach ($students as $student) : ?>
             <div class="flex gap-4 items-center">
                 <div class="avatar self-start">
@@ -26,7 +26,7 @@ $students = $class->students()->get();
                         <img src="<?= $student->avatar ?>">
                     </div>
                 </div>
-                <div class="text-lg"><?= $student->fullname ?></div>                
+                <div class="text-base font-semibold"><?= $student->fullname ?></div>                
             </div>
             <?php endforeach ?>
         </div>

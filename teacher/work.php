@@ -40,7 +40,7 @@ $active = 'work';
     <?= component_end() ?>
 
     <?= slot('body_end') ?>
-        <input type="checkbox" checked id="create-work-modal" class="modal-toggle" />
+        <input type="checkbox" id="create-work-modal" class="modal-toggle" />
         <div class="modal">
             <div class="flex flex-col overflow-y-auto h-screen w-screen max-w-[100vw] max-h-[100vh] rounded-none">
                 <div class="navbar bg-base-100 border-b border-gray-300">

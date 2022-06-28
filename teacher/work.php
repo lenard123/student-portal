@@ -2,8 +2,9 @@
 require_once '__bootstrap.php'; 
 $class = middleware('can_view_class');
 $active = 'work';
+$srcs = 'add_work';
 ?>
-<?= component_start('layouts/teacher') ?>
+<?= component_start('layouts/teacher', compact('srcs')) ?>
     <?= component_start('layouts/class', compact('class', 'active')) ?>
         
         <div>
@@ -40,8 +41,8 @@ $active = 'work';
     <?= component_end() ?>
 
     <?= slot('body_end') ?>
-        <input type="checkbox" id="create-work-modal" class="modal-toggle" />
-        <div class="modal">
+        <input type="checkbox" checked id="create-work-modal" class="modal-toggle" />
+        <div class="modal" id="create-work-page">
             <div class="flex flex-col overflow-y-auto h-screen w-screen max-w-[100vw] max-h-[100vh] rounded-none">
                 <div class="navbar bg-base-100 border-b border-gray-300">
                     <div class="flex-none">
@@ -60,36 +61,42 @@ $active = 'work';
                         <span class="ml-2 font-semibold text-lg text-gray-700">Post Class Work</span>
                     </div>
                     <div class="flex-none">
-                        <button class="btn btn-primary btn-sm sm:btn-md">Assign</button>
+                        <button @click="submitBtn.click()" class="btn btn-primary btn-sm sm:btn-md">Assign</button>
                     </div>
                 </div>
 
                 <div class="bg-base-200 flex-grow flex flex-col md:flex-row">
-                    <div class="flex-grow py-4 px-0 sm:p-4">
+                    <div class="flex-grow py-4 px-0 sm:p-4 max-w-screen-md mx-auto">
                         <div class="card bg-base-100 border border-gray-300 rounded-none sm:rounded-box">
                             <div class="card-body">
-                                <div class="form-control">
-                                    <label class="label">
-                                        <span class="label-text">Title</span>
-                                    </label>
-                                    <input 
-                                        class="input input-bordered" 
-                                        required 
-                                        type="text" 
-                                        name="title"
-                                    >
-                                </div>
+                                <form @submit="handleSubmit">
+                                    <div class="form-control">
+                                        <label class="label">
+                                            <span class="label-text">Title</span>
+                                        </label>
+                                        <input 
+                                            class="input input-bordered" 
+                                            required 
+                                            type="text" 
+                                            name="title"
+                                            v-model="data.title"
+                                        >
+                                    </div>
 
-                                <div class="form-control">
-                                    <label class="label">
-                                        <span class="label-text">Instruction</span>
-                                    </label>
-                                    <textarea 
-                                        required 
-                                        class="textarea textarea-bordered w-full" 
-                                        name="instruction" 
-                                    ></textarea>
-                                </div>
+                                    <div class="form-control">
+                                        <label class="label">
+                                            <span class="label-text">Instruction</span>
+                                        </label>
+                                        <textarea 
+                                            v-model="data.instruction"
+                                            required 
+                                            class="textarea textarea-bordered w-full" 
+                                            name="instruction" 
+                                        ></textarea>
+                                    </div>
+
+                                    <input class="hidden" type="submit" ref="submitBtn"/>
+                                </form>
 
                             </div>
                         </div>
@@ -97,21 +104,36 @@ $active = 'work';
                         <div class="card bg-base-100 border border-gray-300 mt-4 rounded-none sm:rounded-box">
                             <div class="card-body">
                                 <div class="card-title">Attach a file</div>
-                                <label class="flex rounded border border-gray-300 cursor-pointer">
+                                <label class="flex rounded border border-gray-300 cursor-pointer items-center">
                                   <div class="py-2 px-3 text-gray-600 font-semibold bg-gray-200 text-sm border-r border-gray-300">Browse</div>
-                                  <div class="py-2 px-3 text-gray-600 text-sm font-semibold w-full">
-                                    <span>Choose a file</span>
-                                    <!-- <span x-show="source !== null" x-cloak>1 image selected</span> -->
+                                  <div class="py-2 px-3 text-gray-600 text-sm font-semibold flex-grow">
+                                    <span v-if="fileCount <= 0">Choose a file</span>
+                                    <span v-else v-cloak>{{ fileCount }} file(s) selected</span>
                                   </div>
-                                  <input type="file" name="image" class="opacity-0">
+                                  <span v-show="fileCount >= 1" @click="handleClear" class="mx-4" v-cloak>
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                                      <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                    </svg>
+                                   </span>
+                                  <input type="file" ref="fileInput" @change="handleFileChange" name="image" class="opacity-0 fixed -left-[1000px]" multiple>
                                 </label>
+
+                                <div class="form-control">
+                                    <label class="label">
+                                        <span class="label-text">Deadline (Optional)</span>
+                                    </label>
+                                    <input
+                                        v-model="data.deadline"
+                                        class="input input-bordered"
+                                        type="date"
+                                        min="<?= date('Y-m-d') ?>"
+                                    />
+                                </div>
 
                             </div>
                         </div>
                     </div>
-<!--                     <div class="bg-base-100 p-4 flex-shrink-0 border-t md:border-t-0 md:w-[30%] md:border-l border-gray-300">
-                        Deadline (Optional)
-                    </div> -->
+
                 </div>
 
             </div>

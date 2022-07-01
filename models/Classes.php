@@ -32,6 +32,11 @@ class Classes extends Model
         return $this->hasMany(Post::class, 'class_id')->latest();
     }
 
+    public function works()
+    {
+        return $this->hasMany(ClassWork::class, 'class_id')->latest();
+    }
+
     public function getCoverAttribute()
     {
         return asset($this->attributes['cover']);

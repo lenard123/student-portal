@@ -55,6 +55,15 @@ class Middleware
         return $class;
     }
 
+    public static function can_add_work()
+    {
+        $code = get('code');
+        $class = Classes::where('code', $code)->first();
+        if ( is_null($class) || !Auth::user()->canViewClass($class)) {
+            die(component('errors/404'));
+        }
+    }
+
     public static function post_method_only()
     {
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
@@ -68,6 +77,16 @@ class Middleware
             $request_body = json_decode(file_get_contents("php://input"), TRUE);
 
             $_POST = $_POST + ($request_body ?? []);
+
+            foreach($_POST as $key => $value) {
+                //Trim 
+                $value = trim($value);
+
+                if (strlen($value) <= 0) $value = null;
+
+                $_POST[$key] = $value;
+            }
+
         }
     }
 

@@ -21,6 +21,7 @@ require_once 'models/User.php';
 require_once 'models/Classes.php';
 require_once 'models/Post.php';
 require_once 'models/Announcement.php';
+require_once 'models/ClassWork.php';
 
 Session::init();
 middleware('merge_post_data');

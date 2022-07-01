@@ -1,5 +1,5 @@
-import { createApp, ref, reactive } from './vue.js'
-import { invoke } from './util.js'
+import { createApp, ref, reactive, computed } from './vue.js'
+import { invoke, getErrorMessage } from './util.js'
 
 const useMutator = (callback, option) => {
 
@@ -8,6 +8,10 @@ const useMutator = (callback, option) => {
     const isSuccess = ref(false)
     const data = ref(null)
     const error = ref(null)
+
+    const errorMessages = computed(() => {
+        return getErrorMessage(error.value)
+    })
 
     const execute = async(params) => {
 
@@ -30,7 +34,7 @@ const useMutator = (callback, option) => {
         }
     }
 
-    return { isLoading, isError, isSuccess, execute, error, data }
+    return { isLoading, isError, isSuccess, execute, error, data, errorMessages }
 
 }
 

@@ -26,4 +26,16 @@ class Storage
         $filesystem->writeStream($fullpath, $stream);
         return $fullpath;
     }
+
+    public static function download($path, $name = null)
+    {
+        $filesystem = static::getInstance();
+        $response = $filesystem->read($path);
+
+        $name ??= $path;
+        header('Content-Type: application/octet-stream');
+        header("Content-Transfer-Encoding: Binary"); 
+        header("Content-disposition: attachment; filename=\"" . $name . "\""); 
+        echo $response; 
+    }
 }

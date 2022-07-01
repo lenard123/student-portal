@@ -1,4 +1,5 @@
 <?php require_once '__bootstrap.php'; ?>
+<?php middleware('guests_only') ?>
 <!DOCTYPE html>
 <html>
 <head>

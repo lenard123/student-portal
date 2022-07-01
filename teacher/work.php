@@ -50,10 +50,10 @@ $srcs = 'add_work';
                 </button>
                 <div class="flex flex-grow gap-x-4 flex-col">
                     <div class="font-semibold flex-grow"><?= $work->title ?></div>
-                    <div class="flex justify-between">
-                        <div class="text-sm text-gray-600 font-semibold">Posted <?= $work->created_at->diffForHumans() ?></div>
+                    <div class="flex flex-col md:flex-row justify-between">
+                        <div class="text-sm text-gray-600">Posted <span class="font-semibold"><?= $work->created_at->diffForHumans() ?></span></div>
                         <?php if($work->deadline) : ?>
-                            <div class="text-sm text-gray-600 font-semibold">Due <?= $work->deadline->diffForHumans() ?></div>
+                            <div class="text-sm text-gray-600">Due <span class="font-semibold"><?= $work->deadline->diffForHumans() ?></span></div>
                         <?php endif ?>
                     </div>
                 </div>

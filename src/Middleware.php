@@ -87,6 +87,20 @@ class Middleware
                 $_POST[$key] = $value;
             }
 
+            if (is_array($_FILES)) {
+                foreach($_FILES as $name => $file) {
+                    $tmp = array();
+                    $n = count($file["name"]);
+                    for($i = 0; $i < $n; $i++)
+                    {
+                        $tmp[$i] = array();
+                        foreach ($file as $key => $value) {
+                            $tmp[$i][$key] = $value[$i];                        
+                        }
+                    } 
+                    $_FILES[$name] = $tmp;
+                }
+            }
         }
     }
 

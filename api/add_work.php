@@ -16,5 +16,6 @@ $work = new ClassWork();
 $work->fill(request_only('title', 'instruction', 'deadline'));
 $work->class()->associate($class);
 $work->save();
+$work->uploadAttachments($_FILES['attachments']);
 
 response($work, 201);

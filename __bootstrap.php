@@ -15,6 +15,7 @@ require_once 'src/Auth.php';
 require_once 'src/AdminAuth.php';
 require_once 'src/validator.php';
 require_once 'src/Middleware.php';
+require_once 'src/Storage.php';
 
 require_once 'models/Model.php';
 require_once 'models/User.php';

@@ -3,7 +3,11 @@
 namespace App\Providers;
 
 // use Illuminate\Support\Facades\Gate;
+
+use App\Auth\AdminGuard;
+use App\Auth\StudentGuard;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Auth;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -25,6 +29,18 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        Auth::extend('admin', function ($app, $name, array $config) {
+            $provider = Auth::createUserProvider($config['provider']);
+            $guard = new AdminGuard($name, $provider, app()->make('session.store'));
+            $guard->setCookieJar(app('cookie'));
+            return $guard;
+        });
+
+        Auth::extend('student', function ($app, $name, array $config) {
+            $provider = Auth::createUserProvider($config['provider']);
+            $guard = new StudentGuard($name, $provider, app()->make('session.store'));
+            $guard->setCookieJar(app('cookie'));
+            return $guard;
+        });
     }
 }

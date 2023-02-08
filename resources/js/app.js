@@ -1,18 +1,17 @@
-import './bootstrap';
-import { createApp } from 'vue';
-import login from './pages/login';
-import register from './pages/register';
+import "./bootstrap";
+import { createApp } from "vue";
+import Alert from "./components/Alert.vue";
+import passwordToggler from "./app/passwordToggler";
+import studentSidebar from "./app/studentSidebar";
 
-window.addEventListener('load', () => {
-    const bodyID = document.body.id
+const vueApps = { passwordToggler, studentSidebar };
 
-    switch(bodyID) {
-        case 'login_page': 
-            createApp(login).mount(`#${bodyID}`)
-            break;
-        case 'register_page':
-            createApp(register).mount(`#${bodyID}`)
-            break;
-    }
-
-})
+window.addEventListener("load", () => {
+    const apps = document.querySelectorAll("[data-app]");
+    apps.forEach((app) => {
+        const appName = app.dataset.app;
+        if (vueApps[appName]) {
+            createApp(vueApps[appName]).component("Alert", Alert).mount(app);
+        }
+    });
+});

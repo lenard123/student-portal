@@ -5,3 +5,11 @@
 [v-cloak] {
     display: none;
 }
+
+.student-panel a.navlink {
+    @apply hover:bg-blue-400 p-3 text-sm rounded-lg  transition;
+}
+
+.student-panel a.navlink.active {
+    @apply bg-white text-slate-800 font-light text-sm rounded shadow hover:bg-slate-50;
+}

@@ -9,7 +9,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="bg-slate-50" id="@yield('body_id')">
+<body class="bg-slate-50">
     @yield('content')
 </body>
 

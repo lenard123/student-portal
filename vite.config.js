@@ -1,13 +1,12 @@
-import { defineConfig, loadEnv } from 'vite';
-import laravel from 'laravel-vite-plugin';
-import vue from '@vitejs/plugin-vue';
+import { defineConfig, loadEnv } from "vite";
+import laravel from "laravel-vite-plugin";
+import vue from "@vitejs/plugin-vue";
 
 export default ({ mode }) => {
-    console.log(loadEnv(mode, ".").VITE_SERVER_HOST)
     return defineConfig({
         plugins: [
             laravel({
-                input: ['resources/css/app.css', 'resources/js/app.js'],
+                input: ["resources/css/app.css", "resources/js/app.js"],
                 refresh: true,
             }),
             vue({
@@ -19,7 +18,7 @@ export default ({ mode }) => {
                         // to instead re-write asset URLs to point to the Vite
                         // server instead.
                         base: null,
-     
+
                         // The Vue plugin will parse absolute URLs and treat them
                         // as absolute paths to files on disk. Setting this to
                         // `false` will leave absolute URLs un-touched so they can
@@ -31,14 +30,17 @@ export default ({ mode }) => {
         ],
         resolve: {
             alias: {
-                'vue': 'vue/dist/vue.esm-bundler.js'
-            }
+                vue: "vue/dist/vue.esm-bundler.js",
+            },
         },
         server: {
             hmr: {
-                host: loadEnv(mode, '.').VITE_SERVER_HOST
-            }
-        }
+                host: loadEnv(mode, ".").VITE_SERVER_HOST,
+            },
+        },
+        build: {
+            minify: mode === "production",
+            sourcemap: mode === "development",
+        },
     });
-}
-
+};

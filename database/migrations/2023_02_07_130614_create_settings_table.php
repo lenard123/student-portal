@@ -14,8 +14,14 @@ return new class extends Migration
     public function up()
     {
         Schema::create('settings', function (Blueprint $table) {
-            $table->unsignedBigInteger('school_year_id')->nullable();
-            $table->foreign('school_year_id')->references('id')->on('school_years');
+            $table->unsignedBigInteger('pre-school')->nullable();
+            $table->unsignedBigInteger('elementary')->nullable();
+            $table->unsignedBigInteger('highschool')->nullable();
+            $table->unsignedBigInteger('senior-highschool')->nullable();
+            $table->foreign('pre-school')->references('id')->on('school_years');
+            $table->foreign('elementary')->references('id')->on('school_years');
+            $table->foreign('highschool')->references('id')->on('school_years');
+            $table->foreign('senior-highschool')->references('id')->on('school_years');
             $table->timestamps();
         });
     }

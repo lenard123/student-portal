@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\Admin\SchoolYearController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\SettingsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,9 +32,16 @@ Route::group(['middleware' => 'auth'], function () {
     Route::view('/settings', 'pages.student.settings');
 });
 
-Route::group(['prefix' => 'admin'], function () {
-    Route::view('/login', 'pages.auth.admin-login');
-    Route::post('/login', [LoginController::class, 'adminLogin']);
+Route::view('/admin/login', 'pages.auth.admin-login');
+Route::post('/admin/login', [LoginController::class, 'adminLogin']);
 
-    Route::view('/', 'pages.admin.dashboard')->middleware('auth:admin');
+Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
+
+    Route::view('/', 'pages.admin.dashboard');
+    Route::get('/settings/school-year', [SchoolYearController::class, 'index']);
+
+
+    Route::patch('/settings/active-department', [SettingsController::class, 'updateActiveDepartment']);
+    Route::post('/settings/school-year', [SchoolYearController::class, 'create']);
+    Route::patch('/settings/school-year', [SchoolYearController::class, 'updateActiveSchoolYear']);
 });

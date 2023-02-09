@@ -1,21 +1,19 @@
 import "./bootstrap";
 import { createApp } from "vue";
-import Alert from "./components/Alert.vue";
-import { Button } from "flowbite-vue";
 import passwordToggler from "./app/passwordToggler";
 import studentSidebar from "./app/studentSidebar";
 import changeDepartment from "./app/changeDepartment";
-import adminSettingsSchoolYear from './app/admin/settings/schoolYear'
+import adminSettingsSchoolYear from "./app/admin/settings/schoolYear";
 import global from "./app/global";
+import * as components from "./components/index";
 
-const vueApps = { 
-    passwordToggler, 
-    studentSidebar, 
-    changeDepartment, 
+const vueApps = {
+    passwordToggler,
+    studentSidebar,
+    changeDepartment,
     global,
-    adminSettingsSchoolYear 
+    adminSettingsSchoolYear,
 };
-const components = { Alert, FbButton: Button };
 
 window.addEventListener("load", () => {
     const apps = document.querySelectorAll("[data-app]");

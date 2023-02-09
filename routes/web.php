@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\FacultyController;
 use App\Http\Controllers\Admin\SchoolYearController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
@@ -39,6 +40,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
 
     Route::view('/', 'pages.admin.dashboard');
     Route::get('/settings/school-year', [SchoolYearController::class, 'index']);
+    Route::get('/faculty', [FacultyController::class, 'index']);
 
 
     Route::patch('/settings/active-department', [SettingsController::class, 'updateActiveDepartment']);

@@ -15,3 +15,7 @@
 .student-panel a.navlink.active {
     @apply bg-white text-slate-800 font-light text-sm rounded shadow hover:bg-slate-50;
 }
+
+#sortbox:checked ~ #sortboxmenu {
+    opacity: 1;
+}

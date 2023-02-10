@@ -12,10 +12,6 @@ class SectionController extends Controller
 {
     public function index(Request $request)
     {
-        $this->validate($request, [
-            'grade_level' => 'required|exists:grade_levels,id'
-        ]);
-
         $grade_level = $request->grade_level;
         $sections = Section::where('grade_level_id', $request->grade_level)->get();
         return view('pages.admin.sections.index', compact('sections', 'grade_level'));
@@ -23,10 +19,6 @@ class SectionController extends Controller
 
     public function createForm(Request $request)
     {
-        $this->validate($request, [
-            'grade_level' => 'required|exists:grade_levels,id'
-        ]);
-
         $grade_level = GradeLevel::find($request->grade_level);
         $subjects = Subject::all();
 
@@ -42,15 +34,16 @@ class SectionController extends Controller
             'subjects.*' => 'exists:subjects,id'
         ]);
 
-        $grade_level = $request->grade_level;
+        $grade_level = GradeLevel::find($request->grade_level);
 
         $section = Section::create([
-            'grade_level_id' => $grade_level,
+            'school_year_id' => settings()->getActiveSchoolYear($grade_level->department)->id,
+            'grade_level_id' => $grade_level->id,
             'name' => $request->section
         ]);
 
         $section->subjects()->sync($request->subjects);
 
-        return redirect("/admin/classes?grade_level=$grade_level");
+        return redirect("/admin/classes?grade_level={$grade_level->id}");
     }
 }

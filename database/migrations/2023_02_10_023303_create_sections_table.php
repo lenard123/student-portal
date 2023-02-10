@@ -15,8 +15,10 @@ return new class extends Migration
     {
         Schema::create('sections', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('school_year_id');
             $table->unsignedBigInteger('grade_level_id');
             $table->string('name');
+            $table->foreign('school_year_id')->references('id')->on('school_years');
             $table->foreign('grade_level_id')->references('id')->on('grade_levels');
             $table->timestamps();
         });

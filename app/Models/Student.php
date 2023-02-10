@@ -10,6 +10,12 @@ class Student extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = 'user_id';
+
+    protected $with = ['sections'];
+
+    protected $appends = ['currentSection'];
+
     protected $fillable = [
         'department',
         'contact_number',
@@ -21,8 +27,15 @@ class Student extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function enrollee()
+    public function sections()
     {
-        return $this->hasOne(Enrollee::class)->where('school_year_id', settings()->getActiveSchoolYear());
+        // return $this->belongsTo(Section::class, 'section_id', 'student_id', 'section_students');
+        $active_school_year = settings()->getActiveSchoolYear($this->department);
+        return $this->belongsToMany(Section::class, 'section_student', 'student_id')->where('sections.school_year_id', $active_school_year->id);
+    }
+
+    public function getCurrentSectionAttribute()
+    {
+        return $this->sections->first();
     }
 }

@@ -209,6 +209,7 @@ return [
     */
 
     'aliases' => Facade::defaultAliases()->merge([
+        'Student' => \App\Models\Student::class,
         // 'ExampleClass' => App\Example\ExampleClass::class,
     ])->toArray(),
 

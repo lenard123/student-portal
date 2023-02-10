@@ -9,7 +9,14 @@ class Section extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['grade_level_id', 'name'];
+    protected $fillable = ['school_year_id', 'grade_level_id', 'name'];
+
+    protected $with = ['gradeLevel'];
+
+    public function gradeLevel()
+    {
+        return $this->belongsTo(GradeLevel::class);
+    }
 
     public function subjects()
     {

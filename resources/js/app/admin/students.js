@@ -1,9 +1,12 @@
-import { ref } from "vue";
+import { ref, computed } from "vue";
 
 export default {
     setup() {
         const searchField = ref("student_id");
         const searchValue = ref("");
+
+        const statusFilter = ref("all");
+        const gradeFilter = ref("all");
 
         const headers = [
             {
@@ -20,7 +23,56 @@ export default {
                 value: "user.firstname",
                 sortable: true,
             },
+            {
+                text: "Status",
+                value: "status",
+            },
+            {
+                text: "Grade",
+                value: "grade",
+            },
+            {
+                text: "Section",
+                value: "section",
+            },
+            {
+                text: "",
+                value: "action",
+            },
         ];
+
+        const filterOptions = computed(() => {
+            const result = [];
+
+            if (
+                statusFilter.value === "enrolled" ||
+                gradeFilter.value !== "all"
+            ) {
+                result.push({
+                    field: "currentSection",
+                    comparison: "!=",
+                    criteria: null,
+                });
+            }
+
+            if (statusFilter.value === "not_enrolled") {
+                result.push({
+                    field: "currentSection",
+                    comparison: "=",
+                    criteria: null,
+                });
+            }
+
+            if (gradeFilter.value !== "all") {
+                result.push({
+                    field: "currentSection.grade_level_id",
+                    comparison: "=",
+                    criteria: parseInt(gradeFilter.value),
+                });
+            }
+
+            return result;
+        });
 
         const items = window.students;
 
@@ -29,6 +81,9 @@ export default {
             items,
             searchField,
             searchValue,
+            filterOptions,
+            statusFilter,
+            gradeFilter,
         };
     },
 };

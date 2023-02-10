@@ -17,7 +17,7 @@ class GradeLevelSeeder extends Seeder
     {
         foreach ($this->data() as $department => $levels) {
             foreach ($levels as $level) {
-                GradeLevel::create(compact('department', 'level'));
+                $level = GradeLevel::create(compact('department', 'level'));
             }
         }
     }

@@ -18,7 +18,7 @@ class FacultyFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => User::factory(),
+            'user_id' => User::factory()->faculty(),
             'department' => fake()->randomElement(['pre-school', 'elementary', 'highschool', 'senior-highschool']),
             'status' => fake()->randomElement(['active', 'pending'])
         ];

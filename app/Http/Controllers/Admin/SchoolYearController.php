@@ -31,13 +31,17 @@ class SchoolYearController extends Controller
     public function create(Request $request)
     {
         $this->validate($request, [
-            'school_year' => 'required|unique:school_years',
+            'school_year' => 'required',
         ]);
 
         $school_year = SchoolYear::create([
             'school_year' => $request->school_year,
             'department' => settings()->getActiveDepartment()
         ]);
+
+        if (settings()->getActiveSchoolYear() === null) {
+            $school_year->setAsActive();
+        }
 
         return back();
     }

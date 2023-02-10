@@ -5,12 +5,14 @@ import studentSidebar from "./app/studentSidebar";
 import adminSettingsSchoolYear from "./app/admin/settings/schoolYear";
 import global from "./app/global";
 import * as components from "./components/index";
+import student from "./app/admin/students";
 
 const vueApps = {
     passwordToggler,
     studentSidebar,
     global,
     adminSettingsSchoolYear,
+    student,
 };
 
 window.addEventListener("load", () => {

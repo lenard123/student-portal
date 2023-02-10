@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\FacultyController;
 use App\Http\Controllers\Admin\SchoolYearController;
 use App\Http\Controllers\Admin\SectionController;
+use App\Http\Controllers\Admin\StudentController;
 use App\Http\Controllers\Admin\SubjectController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
@@ -46,6 +47,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
     Route::get('/subjects', [SubjectController::class, 'index']);
     Route::get('/classes', [SectionController::class, 'index']);
     Route::get('/classes/new', [SectionController::class, 'createForm']);
+    Route::get('/students', [StudentController::class, 'index']);
 
     Route::post('/classes', [SectionController::class, 'create']);
     Route::patch('/settings/active-department', [SettingsController::class, 'updateActiveDepartment']);

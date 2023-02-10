@@ -1,6 +1,8 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+/* @import "./vue-datatable.css"; */
 
 [v-cloak] {
     display: none;

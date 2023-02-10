@@ -12,6 +12,8 @@
 
 <body class="bg-slate-50">
     @yield('content')
+
+    @yield('footer')
 </body>
 
 </html>

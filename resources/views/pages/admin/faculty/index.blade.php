@@ -8,46 +8,46 @@
     <div class="flex justify-between">
         <h1 class="text-xl font-semibold text-gray-900 sm:text-2xl dark:text-white">Manage Faculty</h1>
 
-        <fb-button>Add School Year</fb-button>
+        <fb-button>Add Faculty</fb-button>
     </div>
 
     <div class="bg-white shadow w-full mt-4">
-        <fb-table class="w-full" striped>
+        <fb-table class="w-full" striped hoverable>
             <table-head>
-                <table-head-cell>Product name</table-head-cell>
-                <table-head-cell>Color</table-head-cell>
-                <table-head-cell>Category</table-head-cell>
-                <table-head-cell>Price</table-head-cell>
+                <table-head-cell>Name</table-head-cell>
+                <table-head-cell>Status</table-head-cell>
                 <table-head-cell><span class="sr-only">Edit</span></table-head-cell>
             </table-head>
             <table-body>
+                @foreach($faculties as $faculty)
                 <table-row>
-                    <table-cell>Apple MacBook Pro 17"</table-cell>
-                    <table-cell>Sliver</table-cell>
-                    <table-cell>Laptop</table-cell>
-                    <table-cell>$2999</table-cell>
-                    <table-cell>
-                        <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                    <table-cell class="flex items-center">
+                        <img class="w-10 h-10 rounded-full" src="{{ $faculty->user->avatar }}" alt="Jese image">
+                        <div class="pl-3 text-left">
+                            <div class="text-base font-semibold">{{ $faculty->user->fullname }}</div>
+                            <div class="font-normal text-gray-500">{{ $faculty->user->email }}</div>
+                        </div>
                     </table-cell>
-                </table-row>
-                <table-row>
-                    <table-cell>Microsoft Surface Pro</table-cell>
-                    <table-cell>White</table-cell>
-                    <table-cell>Laptop PC</table-cell>
-                    <table-cell>$1999</table-cell>
+
                     <table-cell>
-                        <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                        <div class="flex">
+                            @if($faculty->status === 'pending')
+                            <badge type="yellow">Pending</badge>
+                            @elseif($faculty->status === 'active')
+                            <badge type="green">Active</badge>
+                            @endif
+                        </div>
                     </table-cell>
-                </table-row>
-                <table-row>
-                    <table-cell>Magic Mouse 2</table-cell>
-                    <table-cell>Black</table-cell>
-                    <table-cell>Accessories</table-cell>
-                    <table-cell>$99</table-cell>
+
                     <table-cell>
-                        <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                        <div class="flex gap-4 justify-end">
+                            <a href="#">Edit</a>
+                            <a href="#">View Classes</a>
+                        </div>
                     </table-cell>
+
                 </table-row>
+                @endforeach
             </table-body>
         </fb-table>
     </div>

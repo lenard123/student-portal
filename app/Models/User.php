@@ -58,10 +58,20 @@ class User extends Authenticatable
             set: fn ($value) => Hash::needsRehash($value) ? Hash::make($value) : $value
         );
     }
+
     public function fullname(): Attribute
     {
         return Attribute::make(
             get: fn () => "{$this->firstname} {$this->lastname}"
+        );
+    }
+
+    public function avatar(): Attribute
+    {
+        $name = strtolower(urlencode($this->fullname));
+
+        return Attribute::make(
+            get: fn () =>  "https://avatars.dicebear.com/api/initials/$name.svg"
         );
     }
 }

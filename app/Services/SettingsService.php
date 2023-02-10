@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\GradeLevel;
 use App\Models\SchoolYear;
 use App\Models\Setting;
 use Illuminate\Http\Request;
@@ -36,5 +37,11 @@ class SettingsService
         }
 
         return $this->active_school_year;
+    }
+
+    public function getGradeLevels()
+    {
+        $active_department = $this->getActiveDepartment();
+        return GradeLevel::where('department', $active_department)->get();
     }
 }

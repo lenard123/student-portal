@@ -11,8 +11,6 @@ export function useTableRowClasses() {
     const isStriped = inject("striped");
     const isHoverable = inject("hoverable");
 
-    console.log({ isStriped, isHoverable });
-
     const tableRowClasses = computed(() => {
         return classNames(baseClasses, {
             [stripedClasses]: isStriped,

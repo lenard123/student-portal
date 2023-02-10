@@ -1,18 +1,9 @@
 import { ref } from "vue";
 import AddSchoolYearModal from "./components/AddSchoolYearModal.vue";
-import {
-    Table,
-    TableHead,
-    // TableBody,
-    // TableHeadCell,
-    // TableRow,
-    // TableCell,
-} from "flowbite-vue";
 
 export default {
     components: {
         AddSchoolYearModal,
-        FbTable: Table,
     },
 
     setup() {

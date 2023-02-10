@@ -77,10 +77,10 @@
                     @{{ currentSection.name }}
                 </div>
             </template>
-            <template #item-action="{ currentSection }">
+            <template #item-action="{ currentSection, user_id }">
                 <div class="flex gap-2">
-                    <a href="">Update</a>
-                    <a href="" v-if="currentSection === null">Enroll</a>
+                    <a :href='`/admin/students/${user_id}/edit`'>Update</a>
+                    <a :href="`/admin/students/${user_id}/enroll`">Enroll</a>
                 </div>
             </template>
         </easy-data-table>

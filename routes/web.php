@@ -48,7 +48,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
     Route::get('/classes', [SectionController::class, 'index']);
     Route::get('/classes/new', [SectionController::class, 'createForm']);
     Route::get('/students', [StudentController::class, 'index']);
+    Route::get('/students/{student}/edit', [StudentController::class, 'editForm']);
+    Route::get('/students/{student}/enroll', [StudentController::class, 'enrollForm']);
 
+    Route::put('/students/{student}', [StudentController::class, 'update']);
     Route::post('/classes', [SectionController::class, 'create']);
     Route::patch('/settings/active-department', [SettingsController::class, 'updateActiveDepartment']);
     Route::post('/settings/school-year', [SchoolYearController::class, 'create']);

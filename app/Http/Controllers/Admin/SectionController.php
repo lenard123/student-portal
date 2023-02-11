@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Faculty;
 use App\Models\GradeLevel;
 use App\Models\Section;
 use App\Models\Subject;
@@ -13,8 +14,16 @@ class SectionController extends Controller
     public function index(Request $request)
     {
         $grade_level = $request->grade_level;
-        $sections = Section::where('grade_level_id', $request->grade_level)->get();
+        $sections = Section::withCount('subjects', 'students')->where('grade_level_id', $request->grade_level)->get();
         return view('pages.admin.sections.index', compact('sections', 'grade_level'));
+    }
+
+    public function show(Section $section)
+    {
+        $section->load('students', 'subjects');
+        $department = $section->gradeLevel->department;
+        $faculties = Faculty::with('user')->where('department', $department)->get();
+        return view('pages.admin.sections.show', compact('section', 'faculties'));
     }
 
     public function createForm(Request $request)

@@ -11,7 +11,8 @@ class GradeLevel extends Model
 
     public function sections()
     {
-        $school_year_id = settings()->getActiveSchoolYear()->id;
+        $department = $this->department;
+        $school_year_id = settings()->getActiveSchoolYear($department)->id;
         return $this->hasMany(Section::class)->where('sections.school_year_id', $school_year_id);
     }
 }

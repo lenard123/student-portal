@@ -4,8 +4,8 @@ export default {
     setup() {
         const { grade_levels } = window;
 
-        const selectedLevel = ref(null);
-        const selectedSection = ref(null);
+        const selectedLevel = ref(window.current_section?.grade_level_id);
+        const selectedSection = ref(window.current_section?.id);
 
         const sections = computed(() => {
             return (
@@ -16,8 +16,9 @@ export default {
 
         const subjects = computed(() => {
             return (
-                sections.find((section) => section.id == selectedSection.value)
-                    ?.subjects || []
+                sections.value.find(
+                    (section) => section.id == selectedSection.value
+                )?.subjects || []
             );
         });
 

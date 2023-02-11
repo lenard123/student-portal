@@ -24,4 +24,9 @@ class Section extends Model
             ->withPivot('faculty_id', 'schedule')
             ->using(SectionSubject::class);
     }
+
+    public function students()
+    {
+        return $this->belongsToMany(Student::class, 'section_student', 'section_id', 'student_id');
+    }
 }

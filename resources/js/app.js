@@ -7,6 +7,7 @@ import global from "./app/global";
 import * as components from "./components/index";
 import student from "./app/admin/students";
 import studentEnroll from "./app/admin/student-enroll";
+import manageClass from "./app/admin/manage-class";
 
 const vueApps = {
     passwordToggler,
@@ -15,6 +16,7 @@ const vueApps = {
     adminSettingsSchoolYear,
     student,
     studentEnroll,
+    manageClass,
 };
 
 window.addEventListener("load", () => {

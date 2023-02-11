@@ -7,6 +7,7 @@ export {
     Dropdown,
     TheCard,
     Input as FbInput,
+    Modal,
 } from "flowbite-vue";
 export { default as EasyDataTable } from "vue3-easy-data-table";
 export { default as FilterIcon } from "./FilterIcon.vue";

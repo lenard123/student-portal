@@ -24,9 +24,15 @@ class StudentController extends Controller
 
     public function enrollForm(Student $student)
     {
-        $grade_levels = GradeLevel::with('sections', 'sections.subjects')->where('department', $student->department)->get();
+        if (settings()->getActiveDepartment() !== $student->department) {
+            return redirect('/admin/students');
+        }
 
-        return view('pages.admin.students.enroll', compact('student', 'grade_levels'));
+        $grade_levels = GradeLevel::with('sections', 'sections.subjects')->where('grade_levels.department', $student->department)->get();
+
+        $currentSection = $student->currentSection;
+
+        return view('pages.admin.students.enroll', compact('student', 'grade_levels', 'currentSection'));
     }
 
     public function update(Request $request, Student $student)
@@ -40,6 +46,21 @@ class StudentController extends Controller
 
         $student->update($request->only('student_id'));
         $student->user->update($request->only('firstname', 'lastname', 'middlename', 'email'));
+
+        return redirect('/admin/students');
+    }
+
+    public function enroll(Request $request, Student $student)
+    {
+        $this->validate($request, [
+            'section_id' => 'required'
+        ]);
+
+        if ($student->currentSection) {
+            $student->sections()->detach($student->currentSection->id);
+        }
+
+        $student->sections()->attach($request->section_id);
 
         return redirect('/admin/students');
     }

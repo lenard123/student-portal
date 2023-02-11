@@ -14,6 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('section_subject', function (Blueprint $table) {
+            $table->id();
             $table->unsignedBigInteger('section_id');
             $table->unsignedBigInteger('subject_id');
             $table->unsignedBigInteger('faculty_id')->nullable();

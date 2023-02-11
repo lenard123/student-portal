@@ -14,6 +14,8 @@
         <fb-table hoverable>
             <table-head>
                 <table-head-cell>Name</table-head-cell>
+                <table-head-cell>Students</table-head-cell>
+                <table-head-cell>Subjects</table-head-cell>
                 <table-head-cell></table-head-cell>
             </table-head>
 
@@ -21,7 +23,7 @@
 
                 @if($sections->isEmpty())
                 <table-row>
-                    <table-cell colspan="2" class="py-6 italic text-slate-500">
+                    <table-cell colspan="4" class="py-6 italic text-slate-500">
                         <div class="text-center">No classes added yet in this Grade level</div>
                     </table-cell>
                 </table-row>
@@ -30,9 +32,11 @@
                 @foreach($sections as $section)
                 <table-row>
                     <table-cell>{{ $section->name }}</table-cell>
+                    <table-cell>{{ $section->students_count }}</table-cell>
+                    <table-cell>{{ $section->subjects_count }}</table-cell>
                     <table-cell>
                         <div class="flex justify-end gap-2">
-                            <a href="">View</a>
+                            <a href='{{ url("/admin/classes/{$section->id}") }}'>View</a>
                         </div>
                     </table-cell>
                 </table-row>

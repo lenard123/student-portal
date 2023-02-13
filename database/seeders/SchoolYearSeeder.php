@@ -15,7 +15,9 @@ class SchoolYearSeeder extends Seeder
      */
     public function run()
     {
-        SchoolYear::create(['department' => 'pre-school', 'school_year' => '2021-2022']);
-        SchoolYear::create(['department' => 'pre-school', 'school_year' => '2022-2023']);
+        SchoolYear::create(['department' => 'pre-school', 'school_year' => '2022-2023'])->setAsActive();
+        SchoolYear::create(['department' => 'elementary', 'school_year' => '2022-2023'])->setAsActive();
+        SchoolYear::create(['department' => 'highschool', 'school_year' => '2022-2023'])->setAsActive();
+        SchoolYear::create(['department' => 'senior-highschool', 'school_year' => '2022-2023'])->setAsActive();
     }
 }

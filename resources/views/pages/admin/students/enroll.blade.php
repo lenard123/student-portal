@@ -20,13 +20,13 @@
             <div>
                 <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Grade Level</label>
                 <select v-model="selectedSection" name="section_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                    <option selected :value="null">Choose a Section</option>
+                    <option selected value="">Choose a Section</option>
                     <option v-for="section in sections" :key="section.id" :value="section.id">@{{ section.name }}</option>
                 </select>
             </div>
 
 
-            <div v-if="selectedSection !== null">
+            <div v-if="selectedSection">
                 <hr class="my-4" />
 
                 <fb-table>
@@ -34,9 +34,9 @@
                         <table-head-cell>Name</table-head-cell>
                     </table-head>
                     <table-body>
-                        <table-row v-for="subject in subjects" :key="subject.id">
+                        <table-row v-for="course in courses" :key="course.subject.id">
                             <table-cell class="text-left">
-                                <div class="text-left">@{{ subject.name }}</div>
+                                <div class="text-left">@{{ course.subject.name }}</div>
                             </table-cell>
                         </table-row>
                     </table-body>

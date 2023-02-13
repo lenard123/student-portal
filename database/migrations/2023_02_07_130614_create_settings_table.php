@@ -14,6 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('settings', function (Blueprint $table) {
+            $table->id();
             $table->unsignedBigInteger('pre-school')->nullable();
             $table->unsignedBigInteger('elementary')->nullable();
             $table->unsignedBigInteger('highschool')->nullable();

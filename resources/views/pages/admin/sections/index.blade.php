@@ -33,7 +33,7 @@
                 <table-row>
                     <table-cell>{{ $section->name }}</table-cell>
                     <table-cell>{{ $section->students_count }}</table-cell>
-                    <table-cell>{{ $section->subjects_count }}</table-cell>
+                    <table-cell>{{ $section->courses_count }}</table-cell>
                     <table-cell>
                         <div class="flex justify-end gap-2">
                             <a href='{{ url("/admin/classes/{$section->id}") }}'>View</a>

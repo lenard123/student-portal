@@ -1,13 +1,19 @@
-import { reactive } from "vue";
+import { ref } from "vue";
 
 export default {
     setup() {
-        const selected = reactive(null);
+        const selected = ref(null);
 
-        const select = () => {};
+        console.log(selected);
+
+        const select = (item) => {
+            console.log(item);
+            selected.value = item;
+        };
 
         return {
             selected,
+            select,
         };
     },
 };

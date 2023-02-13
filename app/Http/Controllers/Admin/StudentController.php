@@ -28,7 +28,7 @@ class StudentController extends Controller
             return redirect('/admin/students');
         }
 
-        $grade_levels = GradeLevel::with('sections', 'sections.subjects')->where('grade_levels.department', $student->department)->get();
+        $grade_levels = GradeLevel::with('sections', 'sections.courses.subject')->where('grade_levels.department', $student->department)->get();
 
         $currentSection = $student->currentSection;
 

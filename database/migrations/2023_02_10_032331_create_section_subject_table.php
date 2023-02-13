@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('section_id');
             $table->unsignedBigInteger('subject_id');
             $table->unsignedBigInteger('faculty_id')->nullable();
-            $table->dateTime('schedule')->nullable();
+            $table->json('schedule')->nullable();
             $table->foreign('section_id')->references('id')->on('sections');
             $table->foreign('subject_id')->references('id')->on('subjects');
             $table->foreign('faculty_id')->references('user_id')->on('faculties');

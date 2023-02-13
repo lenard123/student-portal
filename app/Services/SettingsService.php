@@ -10,7 +10,12 @@ use Illuminate\Http\Request;
 class SettingsService
 {
 
-    private ?SchoolYear $active_school_year = null;
+    private $active_school_year = [
+        'pre-school' => null,
+        'elementary' => null,
+        'highschool' => null,
+        'senior-highschool' => null
+    ];
     private Setting $setting;
 
     public function __construct()
@@ -28,15 +33,15 @@ class SettingsService
         return session('active_department', 'pre-school');
     }
 
-    public function getActiveSchoolYear($department = null): ?SchoolYear
+    public function getActiveSchoolYear($department = null)
     {
-        if ($this->active_school_year === null) {
-            $active_department = $department ?: $this->getActiveDepartment();
+        $active_department = $department ?: $this->getActiveDepartment();
+        if ($this->active_school_year[$active_department] === null) {
             $school_year = $this->setting->$active_department;
-            $this->active_school_year = SchoolYear::find($school_year);
+            $this->active_school_year[$active_department] = SchoolYear::find($school_year);
         }
 
-        return $this->active_school_year;
+        return $this->active_school_year[$active_department];
     }
 
     public function getGradeLevels()

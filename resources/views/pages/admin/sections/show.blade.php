@@ -18,27 +18,31 @@
                 <table-head-cell></table-head-cell>
             </table-head>
             <table-body>
-                @foreach($section->subjects as $subject)
+                @foreach($section->courses as $course)
                 <table-row>
-                    <table-cell>{{ $subject->name }}</table-cell>
+                    <table-cell>{{ $course->subject->name }}</table-cell>
                     <table-cell>
-                        @if($subject->pivot->faculty)
-                        <div class="text-slate-900">{{ $subject->pivot->faculty->user->fullname }}</div>
+                        @if($course->faculty)
+                        <div class="text-slate-900">{{ $course->faculty->user->fullname }}</div>
                         @else
                         <div class="text-slate-500 italic">Unassigned</div>
                         @endif
                     </table-cell>
                     <table-cell>
-                        @if(!$subject->pivot->schedule)
+                        @if($course->schedule['day'])
+                        <div class="text-slate-900">{{ $course->schedule['day'] }}</div>
+                        @else
                         <div class="text-slate-500 italic">Unassigned</div>
                         @endif
                     </table-cell>
                     <table-cell>
-                        @if(!$subject->pivot->schedule)
+                        @if($course->schedule['time'])
+                        <div class="text-slate-900">{{ $course->schedule['time'] }}</div>
+                        @else
                         <div class="text-slate-500 italic">Unassigned</div>
                         @endif
                     </table-cell>
-                    <table-cell>Update</table-cell>
+                    <table-cell @click='select(@json($course))'>Update</table-cell>
                 </table-row>
                 @endforeach
             </table-body>
@@ -67,7 +71,7 @@
         </fb-table>
     </div>
 
-    <modal size="md" v-if="selected !== null">
+    <modal @close="selected=null" size="md" v-if="selected !== null">
         <template #header>
             <div class="flex items-center text-lg">
                 Update Subject
@@ -75,33 +79,42 @@
         </template>
 
         <template #body>
-            <form method="POST" action="/admin/settings/school-year">
+            <form method="POST" :action='`{{ url("/admin/classes/$section->id/subjects") }}/${selected.id}`'>
                 @csrf
                 @method("PUT")
 
                 <div>
                     <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select Faculty</label>
-                    <select name="faculty_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    <select v-model="selected.faculty_id" name="faculty_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <option :value="null">Select Faculty</option>
                         @foreach($faculties as $faculty)
-                        <option value="{{ $faculty->id }}">{{ $faculty->user->fullname }}</option>
+                        <option value="{{ $faculty->user_id }}">
+                            {{ $faculty->user->fullname }}
+                        </option>
                         @endforeach
                     </select>
                 </div>
 
                 <div class="mt-4">
                     <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select Day</label>
-                    <select name="day" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                        <option>Monday</option>
-                        <option>Tuesday</option>
-                        <option>Wednesday</option>
-                        <option>Thursday</option>
-                        <option>Friday</option>
-                        <option>Saturday</option>
+                    <select v-model="selected.schedule.day" name="day" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <option :value="null">Select Day</option>
+                        <option value="Monday">Monday</option>
+                        <option value="Tuesday">Tuesday</option>
+                        <option value="Wednesday">Wednesday</option>
+                        <option value="Thursday">Thursday</option>
+                        <option value="Friday">Friday</option>
+                        <option value="Saturday">Saturday</option>
+                        <option value="Sunday">Sunday</option>
+                        <option value="M-F">M-F</option>
+                        <option value="MWF">MWF</option>
+                        <option value="TTH">TTH</option>
+                        <option value="TTHS">TTHS</option>
                     </select>
                 </div>
 
                 <div class="mt-4">
-                    <fb-input name="time" label="Time"></fb-input>
+                    <fb-input v-model="selected.schedule.time" name="time" label="Time"></fb-input>
                 </div>
 
                 <div class="mt-4 flex justify-end">

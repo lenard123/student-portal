@@ -18,15 +18,13 @@ class Section extends Model
         return $this->belongsTo(GradeLevel::class);
     }
 
-    public function subjects()
-    {
-        return $this->belongsToMany(Subject::class)
-            ->withPivot('faculty_id', 'schedule')
-            ->using(SectionSubject::class);
-    }
-
     public function students()
     {
         return $this->belongsToMany(Student::class, 'section_student', 'section_id', 'student_id');
+    }
+
+    public function courses()
+    {
+        return $this->hasMany(SectionCourse::class);
     }
 }

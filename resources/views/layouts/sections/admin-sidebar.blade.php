@@ -6,10 +6,10 @@
                     @csrf
                     @method('PATCH')
                     <select v-cloak onchange="this.parentElement.submit()" :value='@json(settings()->getActiveDepartment())' name="department" class="block py-2.5 px-0 w-full text-sm text-gray-500 bg-transparent border-0 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer">
-                        <option value="pre-school">Pre-school</option>
-                        <option value="elementary">Elementary</option>
-                        <option value="highschool">Junior Highschool</option>
-                        <option value="senior-highschool">Senior Highschool</option>
+                        <option value="pre-school">Pre-school ({{ settings()->getActiveSchoolYear('pre-school')->school_year }})</option>
+                        <option value="elementary">Elementary ({{ settings()->getActiveSchoolYear('elementary')->school_year }})</option>
+                        <option value="highschool">Junior Highschool ({{ settings()->getActiveSchoolYear('highschool')->school_year }})</option>
+                        <option value="senior-highschool">Senior Highschool ({{ settings()->getActiveSchoolYear('senior-highschool')->school_year }})</option>
                     </select>
                 </form>
             </li>
@@ -23,7 +23,7 @@
                 </a>
             </li>
             <li>
-                <a href="#" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                <a href="{{ url('/admin/announcements') }}" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
                     <svg aria-hidden="true" class="w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                         <path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"></path>
                         <path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"></path>
@@ -32,7 +32,7 @@
                 </a>
             </li>
             <li>
-                <a href="#" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                <a href="{{ url('/admin/messages') }}" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
                     <svg aria-hidden="true" class="w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                         <path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"></path>
                         <path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"></path>

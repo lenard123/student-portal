@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AnnouncementController;
 use App\Http\Controllers\Admin\FacultyController;
+use App\Http\Controllers\Admin\MessageController;
 use App\Http\Controllers\Admin\SchoolYearController;
 use App\Http\Controllers\Admin\SectionController;
 use App\Http\Controllers\Admin\StudentController;
@@ -9,6 +10,7 @@ use App\Http\Controllers\Admin\SubjectController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\SettingsController;
+use App\Http\Controllers\Student\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,7 +32,7 @@ Route::view('/register', 'pages.auth.register');
 Route::post('/register', RegisterController::class);
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::view('/', 'pages.student.home');
+    Route::get('/', HomeController::class);
     Route::view('/classes', 'pages.student.classes');
     Route::view('/messages', 'pages.student.messages');
     Route::view('/profile', 'pages.student.profile');
@@ -56,7 +58,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function () {
     Route::get('/announcements/new', [AnnouncementController::class, 'showCreateForm']);
     Route::get('/announcements/{announcement}/edit', [AnnouncementController::class, 'showEditForm']);
     Route::get('/announcements/{announcement}', [AnnouncementController::class, 'show']);
+    Route::get('/messages', [MessageController::class, 'index']);
+    Route::get('/messages/{user}', [MessageController::class, 'show']);
 
+    Route::post('/messages/{user}', [MessageController::class, 'create']);
     Route::put('/announcements/{announcement}', [AnnouncementController::class, 'update']);
     Route::post('/announcements', [AnnouncementController::class, 'create']);
     Route::put('/classes/{section}/subjects/{course}', [SectionController::class, 'updateSubject']);

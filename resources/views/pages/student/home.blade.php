@@ -17,34 +17,15 @@
 <div class="text-xl my-4 font-semibold text-slate-800">Announcements</div>
 <hr />
 
-<div class="grid grid-cols-3 mt-4 gap-4">
+<div class="grid grid-cols-1 sm:grid-cols-2 mt-4 gap-4">
+    @foreach($announcements as $announcement)
     <div class="bg-slate-100 p-4 rounded-md shadow flex gap-2 flex-col">
         <div class="flex-grow">
-            <div class="font-bold">Lorem ipsum dolor sit amet</div>
-            <p class="text-slate-700">Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur quis unde, placeat neque</p>
+            <div class="font-bold uppercase">{{ $announcement->title }}</div>
+            <p class="text-slate-700 text-sm">{{ Str::limit($announcement->content,100) }}</p>
         </div>
-        <div class="text-xs font-bold text-slate-700">August 10, 2022</div>
+        <div class="text-xs text-slate-700 italic">{{ $announcement->created_at->diffForHumans() }}</div>
     </div>
-    <div class="bg-slate-100 p-4 rounded-md shadow flex gap-2 flex-col">
-        <div class="flex-grow">
-            <div class="font-bold">Lorem ipsum dolor sit amet</div>
-            <p class="text-slate-700">Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur quis unde, placeat neque</p>
-        </div>
-        <div class="text-xs font-bold text-slate-700">August 10, 2022</div>
-    </div>
-    <div class="bg-slate-100 p-4 rounded-md shadow flex gap-2 flex-col">
-        <div class="flex-grow">
-            <div class="font-bold">Lorem ipsum dolor sit amet</div>
-            <p class="text-slate-700">Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur quis unde, placeat neque</p>
-        </div>
-        <div class="text-xs font-bold text-slate-700">August 10, 2022</div>
-    </div>
-    <div class="bg-slate-100 p-4 rounded-md shadow flex gap-2 flex-col">
-        <div class="flex-grow">
-            <div class="font-bold">Lorem ipsum dolor sit amet</div>
-            <p class="text-slate-700">Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur quis unde, placeat neque</p>
-        </div>
-        <div class="text-xs font-bold text-slate-700">August 10, 2022</div>
-    </div>
+    @endforeach
 </div>
 @endsection

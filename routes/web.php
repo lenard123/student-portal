@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\SubjectController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\SettingsController;
+use App\Http\Controllers\Student\ClassesController;
 use App\Http\Controllers\Student\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -33,7 +34,7 @@ Route::post('/register', RegisterController::class);
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/', HomeController::class);
-    Route::view('/classes', 'pages.student.classes');
+    Route::get('/classes', ClassesController::class);
     Route::view('/messages', 'pages.student.messages');
     Route::view('/profile', 'pages.student.profile');
     Route::view('/settings', 'pages.student.settings');

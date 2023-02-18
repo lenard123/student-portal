@@ -3,6 +3,7 @@
     "scripts": {
         "dev": "vite --host",
         "build": "vite build",
+        "watch-all": "vite build --mode development --watch",
         "watch": "npm run build -- --mode development --watch.exclude '**/*.php'"
     },
     "devDependencies": {

@@ -14,8 +14,13 @@ class LogoutController extends Controller
      */
     public function __invoke(Request $request): Response|RedirectResponse
     {
-        auth()->logout();
+        switch ($request->guard) {
+            case "admin":
+                auth('admin')->logout();
+                return redirect('/admin/login');
+        }
 
+        auth()->logout();
         return redirect('/login');
     }
 }

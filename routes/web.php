@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Student\ClassesController;
 use App\Http\Controllers\Student\HomeController;
@@ -21,6 +22,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::view('/login', 'pages.auth.login')->name('login');
 Route::post('/login', [LoginController::class, 'studentLogin']);
+Route::post('/logout', LogoutController::class);
 
 Route::view('/register', 'pages.auth.register');
 Route::post('/register', RegisterController::class);

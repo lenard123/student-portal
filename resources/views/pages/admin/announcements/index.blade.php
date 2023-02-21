@@ -29,7 +29,6 @@
                         <div class="flex gap-2 justify-end">
                             <a href='{{ url("/admin/announcements/{$announcement->id}") }}'>View</a>
                             <a href='{{ url("/admin/announcements/{$announcement->id}/edit") }}'>Update</a>
-                            <a href="">Delete</a>
                         </div>
                     </table-cell>
                 </table-row>

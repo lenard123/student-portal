@@ -27,47 +27,50 @@
 </div>
 
 <div class="mt-4">
-    <h2 class="text-xl font-bold tracking-wide">Personal Info</h2>
+    <div class="flex justify-between">
+        <h2 class="text-xl font-bold tracking-wide">Personal Info</h2>
+        <a href="{{ url('/profile/edit') }}">Edit</a>
+    </div>
     <hr class="my-2" />
     <div class="grid grid-cols-1 md:grid-cols-2 text-sm gap-y-2">
         <div class="grid grid-cols-2  gap-2 gap-x-4 text-slate-600  mx-auto">
 
             <div class="sm:text-right">Civil Status: </div>
-            <div>Single</div>
+            <div>{{ auth()->user()->student->civil_status }}</div>
 
             <div class="sm:text-right">Date of Birth: </div>
-            <div>July 27, 2001</div>
+            <div>{{ auth()->user()->student->birthday }}</div>
 
             <div class="sm:text-right">Nationality: </div>
-            <div>Filipino</div>
+            <div>{{ auth()->user()->student->nationality }}</div>
 
             <div class="sm:text-right">Religion: </div>
-            <div>Roman Catholic</div>
+            <div>{{ auth()->user()->student->religion }}</div>
 
-            <div class="sm:text-right">Corporate Email: </div>
-            <div>lenard.mangayayam@gmail.com</div>
+            <div class="sm:text-right">Email: </div>
+            <div>{{ auth()->user()->email }}</div>
 
         </div>
         <div class="grid grid-cols-2 gap-2 gap-x-4 text-slate-600">
             <div class="sm:text-right">Gender: </div>
-            <div>Male</div>
+            <div>{{ auth()->user()->student->gender }}</div>
 
             <div class="sm:text-right">With Disability: </div>
-            <div>None</div>
+            <div>{{ auth()->user()->student->has_disability != null && auth()->user()->student->has_disability ? 'Yes' : 'None' }}</div>
 
             <div class="sm:text-right">Height: </div>
-            <div>5'6ft</div>
+            <div>{{ auth()->user()->student->height }}</div>
 
             <div class="sm:text-right">Weight: </div>
-            <div>100kg</div>
+            <div>{{ auth()->user()->student->weight }}</div>
 
             <div class="sm:text-right">Mobile Phone: </div>
-            <div>+6393 8437 9875</div>
+            <div>{{ auth()->user()->student->contact_number }}</div>
 
         </div>
     </div>
 </div>
-
+<!-- 
 <div class="mt-4">
     <h2 class="text-xl font-bold tracking-wide">Address</h2>
     <hr class="my-2" />
@@ -103,6 +106,6 @@
 
         </div>
     </div>
-</div>
+</div> -->
 
 @endsection

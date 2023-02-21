@@ -44,6 +44,9 @@ class Authenticate extends Middleware
             if (empty($this->guards) || $this->guards[0] === 'web')
                 return route('login');
 
+            if ($this->guards[0] === 'faculty')
+                return '/faculty/login';
+
             if ($this->guards[0] === 'admin')
                 return '/admin/login';
         }

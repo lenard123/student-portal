@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Student\ClassesController;
 use App\Http\Controllers\Student\HomeController;
 use App\Http\Controllers\Student\MessageController;
+use App\Http\Controllers\Student\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,8 +32,12 @@ Route::post('/register', RegisterController::class);
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/', HomeController::class);
     Route::get('/classes', ClassesController::class);
+    Route::get('/classes/{course}', [ClassesController::class, 'show']);
     Route::get('/messages', [MessageController::class, 'index']);
+    Route::view('/profile/edit', 'pages.student.edit-profile');
+    Route::put('/profile/edit', [ProfileController::class, 'update']);
     Route::view('/change-password', 'pages.student.change-password');
+    Route::get('/classes/{course}/lessons/{lesson}', [ClassesController::class, 'showLesson']);
     Route::patch('/change-password', [ChangePasswordController::class, 'changeStudentPassword']);
     Route::post('/messages', [MessageController::class, 'create']);
     Route::view('/profile', 'pages.student.profile');

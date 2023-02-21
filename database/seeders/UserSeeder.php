@@ -17,10 +17,10 @@ class UserSeeder extends Seeder
     {
         // Admin Seeder
         User::create([
-            'firstname' => 'Lenard',
-            'middlename' => 'Clemente',
-            'lastname' => 'Mangay-ayam',
-            'email' => 'lenard.mangayayam@gmail.com',
+            'firstname' => 'Admin',
+            'middlename' => '',
+            'lastname' => 'Example',
+            'email' => 'admin@gmail.com',
             'password' => bcrypt('Password123'),
             'role' => 'admin',
         ]);

@@ -22,11 +22,12 @@
             <table-head-cell>Assigned Faculty</table-head-cell>
             <table-head-cell>Day</table-head-cell>
             <table-head-cell>Time</table-head-cell>
+            <table-head-cell></table-head-cell>
         </table-head>
         <table-body>
             @if (is_null($section))
             <table-row>
-                <table-cell colspan="4">You are currently not enrolled yet.</table-cell>
+                <table-cell colspan="5">You are currently not enrolled yet.</table-cell>
             </table-row>
             @else
             @foreach($section->courses as $course)
@@ -52,6 +53,11 @@
                     @else
                     <div class="text-slate-500 italic">Unassigned</div>
                     @endif
+                </table-cell>
+                <table-cell>
+                    <div class="flex justify-end gap-2">
+                        <a href='{{ url("/classes/{$course->id}") }}'>View</a>
+                    </div>
                 </table-cell>
             </table-row>
             @endforeach

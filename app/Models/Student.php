@@ -16,11 +16,7 @@ class Student extends Model
 
     protected $appends = ['currentSection'];
 
-    protected $fillable = [
-        'department',
-        'contact_number',
-        'student_id',
-    ];
+    protected $guarded = [];
 
     public function user()
     {

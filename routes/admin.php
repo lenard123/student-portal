@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 Route::view('/login', 'pages.auth.admin-login')->withoutMiddleware('auth:admin');
 Route::post('/login', [LoginController::class, 'adminLogin'])->withoutMiddleware('auth:admin');
 
-Route::view('/', 'pages.admin.dashboard');
+Route::get('/', [AnnouncementController::class, 'index']);
 Route::get('/faculty', [FacultyController::class, 'index']);
 Route::get('/subjects', [SubjectController::class, 'index']);
 Route::get('/classes', [SectionController::class, 'index']);

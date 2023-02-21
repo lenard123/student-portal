@@ -21,6 +21,19 @@ class LoginController extends Controller
         ]);
     }
 
+    public function facultyLogin(Request $request)
+    {
+        if (Auth::guard('faculty')->attempt($request->only('email', 'password'))) {
+            $request->session()->regenerate();
+            return redirect()->intended('/faculty');
+        }
+
+        return back()->with('message', [
+            'type' => 'error',
+            'message' => 'Wrong email or password.'
+        ]);
+    }
+
     public function adminLogin(Request $request)
     {
         if (Auth::guard('admin')->attempt($request->only('email', 'password'))) {

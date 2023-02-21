@@ -15,6 +15,10 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    const ROLE_STUDENT = 'student';
+    const ROLE_ADMIN = 'admin';
+    const ROLE_FACULTY = 'faculty';
+
     /**
      * The attributes that are mass assignable.
      *
@@ -64,6 +68,11 @@ class User extends Authenticatable
         return Attribute::make(
             get: fn () => "{$this->firstname} {$this->lastname}"
         );
+    }
+
+    public function faculty()
+    {
+        return $this->hasOne(Faculty::class);
     }
 
     public function avatar(): Attribute

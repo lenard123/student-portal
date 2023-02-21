@@ -29,39 +29,39 @@
 <div class="mt-4">
     <h2 class="text-xl font-bold tracking-wide">Personal Info</h2>
     <hr class="my-2" />
-    <div class="grid grid-cols-2 text-sm">
-        <div class="grid grid-cols-2 gap-2 gap-x-4 text-slate-600  mx-auto">
+    <div class="grid grid-cols-1 md:grid-cols-2 text-sm gap-y-2">
+        <div class="grid grid-cols-2  gap-2 gap-x-4 text-slate-600  mx-auto">
 
-            <div class="text-right">Civil Status: </div>
+            <div class="sm:text-right">Civil Status: </div>
             <div>Single</div>
 
-            <div class="text-right">Date of Birth: </div>
+            <div class="sm:text-right">Date of Birth: </div>
             <div>July 27, 2001</div>
 
-            <div class="text-right">Nationality: </div>
+            <div class="sm:text-right">Nationality: </div>
             <div>Filipino</div>
 
-            <div class="text-right">Religion: </div>
+            <div class="sm:text-right">Religion: </div>
             <div>Roman Catholic</div>
 
-            <div class="text-right">Corporate Email: </div>
+            <div class="sm:text-right">Corporate Email: </div>
             <div>lenard.mangayayam@gmail.com</div>
 
         </div>
         <div class="grid grid-cols-2 gap-2 gap-x-4 text-slate-600">
-            <div class="text-right">Gender: </div>
+            <div class="sm:text-right">Gender: </div>
             <div>Male</div>
 
-            <div class="text-right">With Disability: </div>
+            <div class="sm:text-right">With Disability: </div>
             <div>None</div>
 
-            <div class="text-right">Height: </div>
+            <div class="sm:text-right">Height: </div>
             <div>5'6ft</div>
 
-            <div class="text-right">Weight: </div>
+            <div class="sm:text-right">Weight: </div>
             <div>100kg</div>
 
-            <div class="text-right">Mobile Phone: </div>
+            <div class="sm:text-right">Mobile Phone: </div>
             <div>+6393 8437 9875</div>
 
         </div>
@@ -71,34 +71,34 @@
 <div class="mt-4">
     <h2 class="text-xl font-bold tracking-wide">Address</h2>
     <hr class="my-2" />
-    <div class="grid grid-cols-2 text-sm">
-        <div class="grid grid-cols-2 gap-2 gap-x-4 text-slate-600  mx-auto">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-y-2 text-sm">
+        <div class="grid grid-cols-2 gap-2 gap-x-4 text-slate-600">
 
-            <div class="text-right">Country: </div>
+            <div class="sm:text-right">Country: </div>
             <div>Philippines</div>
 
-            <div class="text-right">Region: </div>
+            <div class="sm:text-right">Region: </div>
             <div>National Capital Region</div>
 
-            <div class="text-right">Province: </div>
+            <div class="sm:text-right">Province: </div>
             <div></div>
 
-            <div class="text-right">Town/City: </div>
+            <div class="sm:text-right">Town/City: </div>
             <div></div>
 
 
         </div>
         <div class="grid grid-cols-2 gap-2 gap-x-4 text-slate-600">
-            <div class="text-right">Barangay: </div>
+            <div class="sm:text-right">Barangay: </div>
             <div></div>
 
-            <div class="text-right">Street: </div>
+            <div class="sm:text-right">Street: </div>
             <div></div>
 
-            <div class="text-right">Residence: </div>
+            <div class="sm:text-right">Residence: </div>
             <div></div>
 
-            <div class="text-right">ZIP Code: </div>
+            <div class="sm:text-right">ZIP Code: </div>
             <div></div>
 
         </div>

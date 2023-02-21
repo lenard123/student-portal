@@ -1,13 +1,13 @@
-@extends('layouts.student')
+@extends('layouts.faculty')
 
 @section('active-navlink', 'home')
 
-@section('student-content')
+@section('faculty-content')
 
 <div class="bg-white p-6 rounded-lg shadow-md flex justify-between items-center">
     <div class="flex-shrink-0 flex-grow">
         <div class="text-3xl text-slate-900 font-bold tracking-tight">Hello, {{ auth()->user()->fullname }}</div>
-        <p class="mt-2 font-medium text-slate-800">Welcome to The Lord's Wisdom Academy of Caloocan <br />Student Portal</p>
+        <p class="mt-2 font-medium text-slate-800">Welcome to The Lord's Wisdom Academy of Caloocan <br />Teachers Portal</p>
     </div>
     <div class="">
         <img class="w-full h-[120px] object-contain" src="{{ url('/images/undraw_online_test.png') }}" />
@@ -28,4 +28,5 @@
     </div>
     @endforeach
 </div>
+
 @endsection

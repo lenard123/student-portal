@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-@section('title', 'Student Portal')
+@section('title', 'Teachers Portal')
 
 @section('content')
 
@@ -8,10 +8,9 @@
     <div id="logo-sidebar" class="fixed lg:static  -translate-x-full lg:translate-x-0 z-[31] inset-y-0 bg-blue-500 flex-shrink-0 w-[320px] max-h-screen text-white p-4" data-app="studentSidebar">
 
         <div class="flex flex-col gap-2" data-active="@yield('active-navlink')">
-            <a data-page="home" class="navlink" href="{{ url('/') }}">Home</a>
-            <a data-page="messages" class="navlink" href="{{ url('/messages') }}">Chat Support</a>
-            <a data-page="profile" class="navlink" href="{{ url('/profile') }}">My Profile</a>
-            <a data-page="classes" class="navlink" href="{{ url('/classes') }}">My Classes</a>
+            <a data-page="home" class="navlink" href="{{ url('/faculty') }}">Home</a>
+            <a data-page="messages" class="navlink" href="{{ url('/faculty/messages') }}">Chat Support</a>
+            <a data-page="classes" class="navlink" href="{{ url('/faculty/classes') }}">My Classes</a>
         </div>
 
     </div>
@@ -46,17 +45,15 @@
                                 </div>
                                 <ul class="py-1" role="none">
                                     <li>
-                                        <a href="{{ url('/messages') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">Chat</a>
+                                        <a href="{{ url('/faculty/messages') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">Chat</a>
                                     </li>
                                     <li>
-                                        <a href="{{ url('/profile') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">Profile</a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ url('/change-password') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">Change Password</a>
+                                        <a href="{{ url('/faculty/change-password') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">Change Password</a>
                                     </li>
                                     <li>
                                         <form action='{{ url("/logout") }}' method="POST">
                                             @csrf
+                                            <input type="hidden" value="faculty" name="guard" />
                                             <button type="submit" class="w-full text-left block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">Sign out</button>
                                         </form>
                                     </li>
@@ -69,7 +66,7 @@
         </nav>
 
         <div class="p-6 w-screen lg:w-auto flex-grow">
-            @yield('student-content')
+            @yield('faculty-content')
         </div>
     </div>
 

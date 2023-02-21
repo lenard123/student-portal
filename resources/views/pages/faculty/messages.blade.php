@@ -1,8 +1,8 @@
-@extends('layouts.student')
+@extends('layouts.faculty')
 
 @section('active-navlink', 'messages')
 
-@section('student-content')
+@section('faculty-content')
 
 
 <div data-app="chat" class="max-w-lg bg-white mx-auto shadow h-full flex flex-col">
@@ -27,7 +27,7 @@
         </div>
     </div>
 
-    <form method="POST" action='{{ url("/messages") }}' class="border-t p-4 flex gap-4">
+    <form method="POST" action='{{ url("/faculty/messages") }}' class="border-t p-4 flex gap-4">
         @csrf
         <fb-input name="content" required placeholder="Enter your message here" class="flex-grow"></fb-input>
         <fb-button>Send</fb-button>

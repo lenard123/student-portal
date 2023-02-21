@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\ChangePasswordController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
@@ -31,6 +32,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/', HomeController::class);
     Route::get('/classes', ClassesController::class);
     Route::get('/messages', [MessageController::class, 'index']);
+    Route::view('/change-password', 'pages.student.change-password');
+    Route::patch('/change-password', [ChangePasswordController::class, 'changeStudentPassword']);
     Route::post('/messages', [MessageController::class, 'create']);
     Route::view('/profile', 'pages.student.profile');
     Route::view('/settings', 'pages.student.settings');

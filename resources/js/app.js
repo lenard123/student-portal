@@ -9,6 +9,7 @@ import student from "./app/admin/students";
 import studentEnroll from "./app/admin/student-enroll";
 import manageClass from "./app/admin/manage-class";
 import chat from "./app/chat";
+import classes from "./app/classes";
 
 const vueApps = {
     passwordToggler,
@@ -19,6 +20,7 @@ const vueApps = {
     studentEnroll,
     manageClass,
     chat,
+    classes,
 };
 
 window.addEventListener("load", () => {

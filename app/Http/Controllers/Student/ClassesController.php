@@ -16,8 +16,8 @@ class ClassesController extends Controller
      */
     public function __invoke(Request $request)
     {
-        $section_id = auth()->user()->student->sections->first()->id;
-        $section = Section::find($section_id)->load('courses', 'courses.subject', 'courses.faculty');
+        $section_id = auth()->user()->student->sections->first()?->id;
+        $section = Section::find($section_id)?->load('courses', 'courses.subject', 'courses.faculty');
         // dd($section->gradeLevel);
         return view('pages.student.classes', compact('section'));
     }

@@ -26,10 +26,20 @@ class SectionCourse extends Model
         return $this->belongsTo(Faculty::class, 'faculty_id');
     }
 
+    public function section()
+    {
+        return $this->belongsTo(Section::class);
+    }
+
+    public function lessons()
+    {
+        return $this->hasMany(Lesson::class, 'course_id');
+    }
+
     protected function schedule(): Attribute
     {
         return Attribute::make(
-            get: fn ($sched) => ($sched == null) ? ['day' => null, 'time' => null] : json_decode($sched,true)
+            get: fn ($sched) => ($sched == null) ? ['day' => null, 'time' => null] : json_decode($sched, true)
         );
     }
 }

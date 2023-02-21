@@ -18,6 +18,9 @@ class LogoutController extends Controller
             case "admin":
                 auth('admin')->logout();
                 return redirect('/admin/login');
+            case "faculty":
+                auth("faculty")->logout();
+                return redirect("/faculty/login");
         }
 
         auth()->logout();
